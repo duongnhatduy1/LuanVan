@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33130.400
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstSoftPhone_02", "MyFirstSoftPhone_02\MyFirstSoftPhone_02.csproj", "{9290D587-D95D-4052-A9CA-2E02697754DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIPClient", "MyFirstSoftPhone_02\SIPClient.csproj", "{9290D587-D95D-4052-A9CA-2E02697754DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
+using MyFirstSoftPhone_02.Pattern;
 using Ozeki.Media;
 using Ozeki.VoIP;
 
 namespace MyFirstSoftPhone_02
 {
-    public partial class Form1 : Form
+    public partial class Form_CallManagement : Form
     {
+        private UserInfo userInfo;
         private ISoftPhone softPhone;
         private IPhoneLine phoneLine;
         private RegState phoneLineInformation;
@@ -20,12 +22,12 @@ namespace MyFirstSoftPhone_02
 
         private bool inComingCall;
 
-        public Form1()
+        public Form_CallManagement(UserInfo u)
         {
+            userInfo = u;
             InitializeComponent();
             
         }
-
 
         private void InitializeSoftPhone()
         {
@@ -36,8 +38,8 @@ namespace MyFirstSoftPhone_02
 
                 softPhone.IncomingCall += softPhone_inComingCall;
 
-                SIPAccount sa = new SIPAccount(true, "dnduy", "dnduy", "dnduy", "dnduy", "192.168.1.3", 5060);
-                InvokeGUIThread(() => { lb_Log.Items.Add("SIP account created!"); });
+                SIPAccount sa = new SIPAccount(true, userInfo.UserName, userInfo.UserName, userInfo.UserName, userInfo.Password, userInfo.ServerIP, 5060);
+                InvokeGUIThread(() => { lb_Log.Items.Add("SIP account logged!"); });
                 
                 phoneLine = softPhone.CreatePhoneLine(sa);
                 phoneLine.RegistrationStateChanged += phoneLine_PhoneLineInformation;
@@ -46,7 +48,7 @@ namespace MyFirstSoftPhone_02
 
                 lbl_NumberToDial.Text = string.Empty;
 
-                
+                lbl_UserLogin.Text = "Hi : "+ userInfo.UserName;
 
                 ConnectMedia();
             }
@@ -142,10 +144,19 @@ namespace MyFirstSoftPhone_02
         {
             InvokeGUIThread(() => { lb_Log.Items.Add("Incoming call from: " + e.Item.DialInfo.ToString()); });
             StartMP3();
-
             call = e.Item;
             WireUpCallEvents();
             inComingCall = true;
+
+            //Form_CallManagement fCopy = new Form_CallManagement(this.userInfo);
+            //this.Hide();    //Hide the Old Form
+            Direct_Calling direct_Calling = new Direct_Calling(this);
+            //this.Visible = false;
+            //this.Owner.Enabled = false;
+            direct_Calling.ShowDialog();
+            //Show the New Form
+            //this.Visible = false;
+            //this.Close();    //Close the Old Form
         }
 
 
@@ -251,7 +262,7 @@ namespace MyFirstSoftPhone_02
             lbl_NumberToDial.Focus();
 
         }
-        private void btn_PickUp_Click(object sender, EventArgs e)
+        public void btn_PickUp_Click(object sender, EventArgs e)
         {
             if (inComingCall)
             {
@@ -280,7 +291,7 @@ namespace MyFirstSoftPhone_02
             call.Start();
         }
 
-        private void btn_HangUp_Click(object sender, EventArgs e)
+        public void btn_HangUp_Click(object sender, EventArgs e)
         {
             StopMP3();
             if (call != null)
@@ -301,6 +312,7 @@ namespace MyFirstSoftPhone_02
             }
 
             lbl_NumberToDial.Text = string.Empty;
+            
         }
 
         private void lb_Log_SelectedIndexChanged(object sender, EventArgs e)
@@ -313,17 +325,6 @@ namespace MyFirstSoftPhone_02
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-       
-        
     }
 }

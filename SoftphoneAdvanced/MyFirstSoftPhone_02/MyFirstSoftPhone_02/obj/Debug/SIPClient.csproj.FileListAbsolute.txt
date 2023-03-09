@@ -1,0 +1,16 @@
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\MyFirstSoftPhone_02.exe.config
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\MyFirstSoftPhone_02.exe
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\MyFirstSoftPhone_02.pdb
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\OzekiSDK.dll
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\OzekiSDK.xml
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\SIPClient.csproj.AssemblyReference.cache
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\SIPClient.csproj.SuggestedBindingRedirects.cache
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Direct_Calling.resources
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Form_CallManagement.resources
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Login.resources
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Properties.Resources.resources
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\SIPClient.csproj.GenerateResource.cache
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\SIPClient.csproj.CoreCompileInputs.cache
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\SIPClient.csproj.CopyComplete
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.exe
+D:\hoctap\LV_KTPM\CodeDemo\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.pdb
