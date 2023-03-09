@@ -18,7 +18,7 @@ namespace MyFirstSoftPhone_02
         MediaConnector connector = new MediaConnector();
         PhoneCallAudioSender mediaSender = new PhoneCallAudioSender();
         PhoneCallAudioReceiver mediaReceiver = new PhoneCallAudioReceiver();
-        MP3StreamPlayback _mp3Player;
+        MP3StreamPlayback _mp3Player = new MP3StreamPlayback("../../resources/test.mp3");
 
         private bool inComingCall;
 
@@ -50,7 +50,6 @@ namespace MyFirstSoftPhone_02
 
                 lbl_UserLogin.Text = "Hi : "+ userInfo.UserName;
 
-                ConnectMedia();
             }
             catch (Exception ex)
             {
@@ -125,9 +124,6 @@ namespace MyFirstSoftPhone_02
 
         private void StartMP3()
         {
-            speaker.Dispose();
-            speaker = Speaker.GetDefaultDevice();
-            _mp3Player = new MP3StreamPlayback("../../resources/test.mp3");
             connector.Connect(_mp3Player, speaker);
             _mp3Player.Start();
             speaker.Start();
@@ -137,7 +133,7 @@ namespace MyFirstSoftPhone_02
         private void StopMP3()
         {
             connector.Disconnect(_mp3Player, speaker);
-            if (_mp3Player != null) _mp3Player.Dispose();
+            if (_mp3Player != null) _mp3Player.Stop();
         }
 
         private void softPhone_inComingCall(object sender, VoIPEventArgs<IPhoneCall> e)
@@ -268,6 +264,7 @@ namespace MyFirstSoftPhone_02
             {
                 inComingCall = false;
                 StopMP3();
+                ConnectMedia();
                 call.Answer();
 
                 InvokeGUIThread(() => { lb_Log.Items.Add("Call accepted."); });
@@ -288,12 +285,15 @@ namespace MyFirstSoftPhone_02
 
             call = softPhone.CreateCallObject(phoneLine, lbl_NumberToDial.Text);
             WireUpCallEvents();
+            ConnectMedia();
             call.Start();
         }
 
         public void btn_HangUp_Click(object sender, EventArgs e)
         {
             StopMP3();
+            DisconnectMedia();
+
             if (call != null)
             {
                 if (inComingCall && call.CallState == CallState.Ringing)

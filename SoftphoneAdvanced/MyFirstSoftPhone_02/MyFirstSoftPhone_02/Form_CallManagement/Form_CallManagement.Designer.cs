@@ -238,7 +238,7 @@
             this.lbl_UserLogin.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbl_UserLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_UserLogin.ForeColor = System.Drawing.Color.Green;
-            this.lbl_UserLogin.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
+            //this.lbl_UserLogin.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
             this.lbl_UserLogin.Location = new System.Drawing.Point(67, 21);
             this.lbl_UserLogin.Name = "lbl_UserLogin";
             this.lbl_UserLogin.Size = new System.Drawing.Size(87, 24);
