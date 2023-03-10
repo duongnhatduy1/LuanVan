@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Direct_Calling));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btn_PickUp = new System.Windows.Forms.Button();
@@ -35,6 +36,7 @@
             this.lbl_StatusCall = new System.Windows.Forms.Label();
             this.lbl_CallerName = new System.Windows.Forms.Label();
             this.lbl_CallerDepartment = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // textBox1
@@ -44,6 +46,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(413, 155);
             this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btn_PickUp
             // 
@@ -74,11 +77,12 @@
             this.lbl_StatusCall.AutoSize = true;
             this.lbl_StatusCall.BackColor = System.Drawing.Color.White;
             this.lbl_StatusCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_StatusCall.Location = new System.Drawing.Point(215, 111);
+            this.lbl_StatusCall.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lbl_StatusCall.Location = new System.Drawing.Point(183, 116);
             this.lbl_StatusCall.Name = "lbl_StatusCall";
-            this.lbl_StatusCall.Size = new System.Drawing.Size(70, 25);
+            this.lbl_StatusCall.Size = new System.Drawing.Size(137, 25);
             this.lbl_StatusCall.TabIndex = 18;
-            this.lbl_StatusCall.Text = "status";
+            this.lbl_StatusCall.Text = "is calling you";
             this.lbl_StatusCall.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl_CallerName
@@ -105,6 +109,11 @@
             this.lbl_CallerDepartment.Text = "callerDepartment";
             this.lbl_CallerDepartment.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // Direct_Calling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -120,6 +129,7 @@
             this.Name = "Direct_Calling";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Controll_Calling";
+            this.Load += new System.EventHandler(this.Direct_Calling_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,5 +143,6 @@
         private System.Windows.Forms.Label lbl_StatusCall;
         private System.Windows.Forms.Label lbl_CallerName;
         private System.Windows.Forms.Label lbl_CallerDepartment;
+        private System.Windows.Forms.Timer timer;
     }
 }

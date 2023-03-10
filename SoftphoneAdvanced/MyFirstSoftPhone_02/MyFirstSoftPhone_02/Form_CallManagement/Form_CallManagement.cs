@@ -243,7 +243,6 @@ namespace MyFirstSoftPhone_02
                 lbl_NumberToDial.Text = lbl_NumberToDial.Text.Substring(0, len - 1);
             }
 
-
         }
 
 
@@ -256,6 +255,10 @@ namespace MyFirstSoftPhone_02
             if (btn == null) return;
             lbl_NumberToDial.Text = "";
             lbl_NumberToDial.Focus();
+            Direct_Calling direct_Calling = new Direct_Calling(this);
+            //this.Visible = false;
+            //this.Owner.Enabled = false;
+            direct_Calling.ShowDialog();
 
         }
         public void btn_PickUp_Click(object sender, EventArgs e)
