@@ -141,7 +141,7 @@
         private System.Windows.Forms.Button btn_PickUp;
         private System.Windows.Forms.Button btn_HangUp;
         private System.Windows.Forms.Label lbl_StatusCall;
-        private System.Windows.Forms.Label lbl_CallerName;
+        public System.Windows.Forms.Label lbl_CallerName;
         private System.Windows.Forms.Label lbl_CallerDepartment;
         private System.Windows.Forms.Timer timer;
     }

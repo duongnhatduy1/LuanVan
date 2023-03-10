@@ -19,7 +19,7 @@ namespace MyFirstSoftPhone_02
         PhoneCallAudioSender mediaSender = new PhoneCallAudioSender();
         PhoneCallAudioReceiver mediaReceiver = new PhoneCallAudioReceiver();
         MP3StreamPlayback _mp3Player = new MP3StreamPlayback("../../resources/test.mp3");
-
+        Direct_Calling direct_Calling;
         private bool inComingCall;
 
         public Form_CallManagement(UserInfo u)
@@ -138,18 +138,26 @@ namespace MyFirstSoftPhone_02
 
         private void softPhone_inComingCall(object sender, VoIPEventArgs<IPhoneCall> e)
         {
-            InvokeGUIThread(() => { lb_Log.Items.Add("Incoming call from: " + e.Item.DialInfo.ToString()); });
+            InvokeGUIThread(() => { lb_Log.Items.Add("Incoming call from: " + e.Item.CallID.ToString()); });
+
+
+
+
             StartMP3();
             call = e.Item;
+           
             WireUpCallEvents();
             inComingCall = true;
 
             //Form_CallManagement fCopy = new Form_CallManagement(this.userInfo);
             //this.Hide();    //Hide the Old Form
-            Direct_Calling direct_Calling = new Direct_Calling(this);
+            direct_Calling = new Direct_Calling(this);
             //this.Visible = false;
             //this.Owner.Enabled = false;
+            direct_Calling.lbl_CallerName.Text = e.Item.OtherParty.DisplayName;
             direct_Calling.ShowDialog();
+
+
             //Show the New Form
             //this.Visible = false;
             //this.Close();    //Close the Old Form
@@ -189,6 +197,7 @@ namespace MyFirstSoftPhone_02
 
             if (e.State.IsCallEnded() == true)
             {
+                
                 StopDevices();
 
                 mediaReceiver.Detach();
@@ -197,7 +206,6 @@ namespace MyFirstSoftPhone_02
                 WireDownCallEvents();
 
                 call = null;
-
                 InvokeGUIThread(() => { lb_Log.Items.Add("Call ended."); });
             }
         }

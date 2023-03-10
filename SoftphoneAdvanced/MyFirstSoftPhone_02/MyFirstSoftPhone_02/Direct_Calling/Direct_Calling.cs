@@ -62,5 +62,7 @@ namespace MyFirstSoftPhone_02
             sec = TimeCall % 60;
             lbl_StatusCall.Text = $"{pad(hour)}{hour.ToString()} : {pad(min)}{min.ToString()} : {pad(sec)}{sec.ToString()}";
         }
+
+        
     }
 }

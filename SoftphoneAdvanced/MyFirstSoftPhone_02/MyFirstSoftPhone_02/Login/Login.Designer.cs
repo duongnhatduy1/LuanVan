@@ -40,16 +40,19 @@ namespace MyFirstSoftPhone_02
             this.tb_ServerIP = new System.Windows.Forms.TextBox();
             this.btn_Registry = new System.Windows.Forms.Button();
             this.btn_Login = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // tb_Username
             // 
+            this.tb_Username.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             resources.ApplyResources(this.tb_Username, "tb_Username");
             this.tb_Username.Name = "tb_Username";
             // 
             // lbl_Login
             // 
             resources.ApplyResources(this.lbl_Login, "lbl_Login");
+            this.lbl_Login.ForeColor = System.Drawing.Color.Red;
             this.lbl_Login.Name = "lbl_Login";
             // 
             // lbl_Username
@@ -64,6 +67,7 @@ namespace MyFirstSoftPhone_02
             // 
             // tb_Password
             // 
+            this.tb_Password.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             resources.ApplyResources(this.tb_Password, "tb_Password");
             this.tb_Password.Name = "tb_Password";
             // 
@@ -75,6 +79,7 @@ namespace MyFirstSoftPhone_02
             // tb_ServerIP
             // 
             this.tb_ServerIP.AllowDrop = true;
+            this.tb_ServerIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             resources.ApplyResources(this.tb_ServerIP, "tb_ServerIP");
             this.tb_ServerIP.Name = "tb_ServerIP";
             // 
@@ -86,6 +91,7 @@ namespace MyFirstSoftPhone_02
             this.btn_Registry.Image = global::MyFirstSoftPhone_02.Properties.Resources.reset1;
             this.btn_Registry.Name = "btn_Registry";
             this.btn_Registry.UseVisualStyleBackColor = false;
+            this.btn_Registry.Click += new System.EventHandler(this.btn_Registry_Click);
             // 
             // btn_Login
             // 
@@ -98,11 +104,19 @@ namespace MyFirstSoftPhone_02
             this.btn_Login.UseVisualStyleBackColor = false;
             this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.BackColor = System.Drawing.Color.Red;
+            this.progressBar1.ForeColor = System.Drawing.Color.Red;
+            resources.ApplyResources(this.progressBar1, "progressBar1");
+            this.progressBar1.Name = "progressBar1";
+            // 
             // Login
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.tb_ServerIP);
             this.Controls.Add(this.btn_Registry);
             this.Controls.Add(this.btn_Login);
@@ -129,5 +143,6 @@ namespace MyFirstSoftPhone_02
         private Button btn_Login;
         private Button btn_Registry;
         private TextBox tb_ServerIP;
+        private ProgressBar progressBar1;
     }
 }

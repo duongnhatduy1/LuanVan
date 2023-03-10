@@ -50,6 +50,14 @@ namespace MyFirstSoftPhone_02
             };
         }
 
+        private void btn_Registry_Click(object sender, EventArgs e)
+        {
+            tb_Username.Text = "";
+            tb_ServerIP.Text = "";
+            tb_Password.Text = "";
+            tb_Username.Focus();
+        }
+
 
         //private void btn_Registry_Click(object sender, EventArgs e)
         //{
