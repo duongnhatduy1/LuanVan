@@ -7,7 +7,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
+        
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -33,7 +33,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
             this.btnSendMessage = new System.Windows.Forms.Button();
             this.tbMessage = new System.Windows.Forms.TextBox();
             this.btnSelectFile = new System.Windows.Forms.Button();
-            this.lblMessage = new System.Windows.Forms.RichTextBox();
+            this.lblMessage = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblMessageInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -50,11 +50,14 @@ namespace MyFirstSoftPhone_02.Handle_Message
             // 
             // tbMessage
             // 
+            this.tbMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbMessage.Location = new System.Drawing.Point(21, 381);
             this.tbMessage.Multiline = true;
             this.tbMessage.Name = "tbMessage";
             this.tbMessage.Size = new System.Drawing.Size(584, 50);
             this.tbMessage.TabIndex = 1;
+            this.tbMessage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbMessage_KeyDown);
+            this.tbMessage.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbMessage_KeyUp);
             // 
             // btnSelectFile
             // 
@@ -67,12 +70,15 @@ namespace MyFirstSoftPhone_02.Handle_Message
             // 
             // lblMessage
             // 
-            this.lblMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblMessage.BackColor = System.Drawing.Color.White;
+            this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.lblMessage.HorizontalScrollbar = true;
+            this.lblMessage.ItemHeight = 18;
             this.lblMessage.Location = new System.Drawing.Point(21, 47);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(718, 312);
+            this.lblMessage.Size = new System.Drawing.Size(718, 310);
             this.lblMessage.TabIndex = 3;
-            this.lblMessage.Text = "";
             // 
             // label1
             // 
@@ -88,7 +94,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
             // 
             this.lblMessageInfo.AutoSize = true;
             this.lblMessageInfo.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessageInfo.ForeColor = System.Drawing.Color.Green;
+            this.lblMessageInfo.ForeColor = System.Drawing.Color.Red;
             this.lblMessageInfo.Location = new System.Drawing.Point(171, 5);
             this.lblMessageInfo.Name = "lblMessageInfo";
             this.lblMessageInfo.Size = new System.Drawing.Size(274, 23);
@@ -99,6 +105,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(766, 443);
             this.Controls.Add(this.lblMessageInfo);
             this.Controls.Add(this.label1);
@@ -120,7 +127,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
         private System.Windows.Forms.Button btnSendMessage;
         private System.Windows.Forms.TextBox tbMessage;
         private System.Windows.Forms.Button btnSelectFile;
-        public System.Windows.Forms.RichTextBox lblMessage;
+        public System.Windows.Forms.ListBox lblMessage;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label lblMessageInfo;
     }

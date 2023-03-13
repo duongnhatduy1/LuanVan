@@ -21,6 +21,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
         {
             form_CallManagement = f;
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
 
@@ -36,17 +37,41 @@ namespace MyFirstSoftPhone_02.Handle_Message
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string content = tbMessage.Text;
-            var messageToSend = new InstantMessage(form_CallManagement.Receiver, content);
-            form_CallManagement.SendMessage(messageToSend);
+            string content = tbMessage.Text.Trim();
+            if (content != "")
+            {
+                var messageToSend = new InstantMessage(form_CallManagement.Receiver, content);
+                form_CallManagement.SendMessage(messageToSend);
+                //lblMessage.Text += Login.userInfo.UserName+": "+ content + "\n";
+                lblMessage.Items.Add(Login.userInfo.UserName + ": " + content);
+            }
             tbMessage.Text = "";
             tbMessage.Focus();
-            lblMessage.Text += Login.userInfo.UserName+": "+ content + "\n";
         }
 
         private void FormMessage_FormClosed(object sender, FormClosedEventArgs e)
         {
             form_CallManagement.formMessage = null;
+        }
+
+        private void tbMessage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                button1_Click(sender, e);
+                tbMessage.Text = "";
+            }
+            
+
+        }
+
+        private void tbMessage_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                tbMessage.Text = "";
+            }
         }
     }
 }

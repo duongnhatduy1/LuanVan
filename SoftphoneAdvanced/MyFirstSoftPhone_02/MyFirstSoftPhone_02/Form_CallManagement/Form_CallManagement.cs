@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using MyFirstSoftPhone_02.Handle_Message;
@@ -191,6 +192,8 @@ namespace MyFirstSoftPhone_02
                     if (phoneLineInformation == RegState.RegistrationSucceeded)
                     {
                         lb_Log.Items.Add("Registration succeeded - Online");
+                        //string vnString = Encoding.Unicode.GetString(Encoding.Default.GetBytes("Xin chào, đây là một chuỗi Tiếng Việt!"));
+                        //lb_Log.Items.Add(vnString);
                     }
                     else
                     {
