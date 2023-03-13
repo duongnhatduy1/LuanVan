@@ -1,4 +1,5 @@
-﻿using MyFirstSoftPhone_02.Pattern;
+﻿using MyFirstSoftPhone_02.Handle_Message;
+using MyFirstSoftPhone_02.Pattern;
 using odm.core;
 using Ozeki.VoIP;
 using System;
@@ -15,7 +16,7 @@ namespace MyFirstSoftPhone_02
 {
     public partial class Login : Form
     {
-        private UserInfo userInfo;
+        public static UserInfo userInfo;
         public Login()
         {
             InitializeComponent();

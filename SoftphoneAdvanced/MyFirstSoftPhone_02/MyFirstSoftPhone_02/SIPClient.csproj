@@ -61,6 +61,12 @@
     <Compile Include="Form_CallManagement\Form_CallManagement.Designer.cs">
       <DependentUpon>Form_CallManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Handle_Message\FormMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Handle_Message\FormMessage.Designer.cs">
+      <DependentUpon>FormMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_CallManagement\Form_CallManagement.resx">
       <DependentUpon>Form_CallManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Handle_Message\FormMessage.resx">
+      <DependentUpon>FormMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
+using MyFirstSoftPhone_02.Handle_Message;
 using MyFirstSoftPhone_02.Pattern;
 using Ozeki.Media;
 using Ozeki.VoIP;
@@ -20,8 +22,10 @@ namespace MyFirstSoftPhone_02
         PhoneCallAudioReceiver mediaReceiver = new PhoneCallAudioReceiver();
         MP3StreamPlayback _mp3Player = new MP3StreamPlayback("../../resources/test.mp3");
         Direct_Calling direct_Calling;
+        public FormMessage formMessage;
+        public event EventHandler<InstantMessage> IncomingMessage;
         private bool inComingCall;
-
+        public string Receiver;
         public Form_CallManagement(UserInfo u)
         {
             userInfo = u;
@@ -43,6 +47,7 @@ namespace MyFirstSoftPhone_02
                 
                 phoneLine = softPhone.CreatePhoneLine(sa);
                 phoneLine.RegistrationStateChanged += phoneLine_PhoneLineInformation;
+                phoneLine.InstantMessaging.MessageReceived += mySoftphone_IncomingMessage;
                 InvokeGUIThread(() => { lb_Log.Items.Add("Phoneline created."); });
                 softPhone.RegisterPhoneLine(phoneLine);
 
@@ -57,6 +62,35 @@ namespace MyFirstSoftPhone_02
             }
         }
 
+
+
+        void mySoftphone_IncomingMessage(object sender, InstantMessage e)
+        {
+            //Console.WriteLine("\nMessage received from {0}: {1}", e.Sender, e.Content);
+            int i = e.Sender.IndexOf("@");
+            Receiver = e.Sender.Substring(0, i);
+
+            var content = new System.Text.StringBuilder("");
+            content.Append(Receiver);
+            content.Append(": ");
+            content.Append(e.Content);
+            content.Append("\n");
+            if (formMessage == null)
+            {
+                formMessage = new FormMessage(this);
+                formMessage.lblMessageInfo.Text = Receiver;
+                InvokeGUIThread(() => { formMessage.lblMessage.Text += content.ToString(); });
+                InvokeGUIThread(() => { formMessage.ShowDialog(); });
+                
+            }
+            if (formMessage != null) InvokeGUIThread(() => { formMessage.lblMessage.Text += content.ToString(); });
+        }
+
+
+        private void DispatchAsync(Action action)
+        {
+            ThreadPool.QueueUserWorkItem(o => action());
+        }
 
         private void StartDevices()
         {
@@ -139,28 +173,13 @@ namespace MyFirstSoftPhone_02
         private void softPhone_inComingCall(object sender, VoIPEventArgs<IPhoneCall> e)
         {
             InvokeGUIThread(() => { lb_Log.Items.Add("Incoming call from: " + e.Item.CallID.ToString()); });
-
-
-
-
             StartMP3();
             call = e.Item;
-           
             WireUpCallEvents();
             inComingCall = true;
-
-            //Form_CallManagement fCopy = new Form_CallManagement(this.userInfo);
-            //this.Hide();    //Hide the Old Form
             direct_Calling = new Direct_Calling(this);
-            //this.Visible = false;
-            //this.Owner.Enabled = false;
             direct_Calling.lbl_CallerName.Text = e.Item.OtherParty.DisplayName;
             direct_Calling.ShowDialog();
-
-
-            //Show the New Form
-            //this.Visible = false;
-            //this.Close();    //Close the Old Form
         }
 
 
@@ -266,7 +285,6 @@ namespace MyFirstSoftPhone_02
             Direct_Calling direct_Calling = new Direct_Calling(this);
             //this.Visible = false;
             //this.Owner.Enabled = false;
-            direct_Calling.ShowDialog();
 
         }
         public void btn_PickUp_Click(object sender, EventArgs e)
@@ -336,6 +354,21 @@ namespace MyFirstSoftPhone_02
 
         }
 
+        public void SendMessage(InstantMessage message)
+        {
+            phoneLine.InstantMessaging.SendMessage(message);
+        }
 
+        private void btnChat_Click(object sender, EventArgs e)
+        {
+            if (formMessage == null)
+            {
+                formMessage = new FormMessage(this);
+                Receiver = tbInputToChat.Text.Trim();
+                formMessage.lblMessageInfo.Text = tbInputToChat.Text;
+                InvokeGUIThread(() => { formMessage.ShowDialog(); });
+
+            }
+        }
     }
 }
