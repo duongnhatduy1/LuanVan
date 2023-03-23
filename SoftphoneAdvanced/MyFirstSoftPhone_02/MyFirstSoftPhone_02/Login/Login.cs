@@ -1,4 +1,5 @@
-﻿using MyFirstSoftPhone_02.Handle_Message;
+﻿using MyFirstSoftPhone_02.Admin;
+using MyFirstSoftPhone_02.Handle_Message;
 using MyFirstSoftPhone_02.Pattern;
 using odm.core;
 using Ozeki.VoIP;
@@ -37,6 +38,14 @@ namespace MyFirstSoftPhone_02
             String password = tb_Password.Text.Trim();
             String serverIP = tb_ServerIP.Text.Trim();
             UserInfo userInfo = new UserInfo(userName, password, serverIP);
+            if (userName == "admin")
+            {
+                this.Hide();    //Hide the Old Form
+                FormMainAdmin formMainAdmin = new FormMainAdmin();
+                formMainAdmin.ShowDialog();
+                this.Close();    //Close the Old Form
+            }
+            else
             if (CheckLogin(userInfo))
             {
                 this.Hide();    //Hide the Old Form

@@ -30,3 +30,6 @@ E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirs
 E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\OzekiSDK.xml
 E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\SIPClient.csproj.CopyComplete
 E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Handle_Message.FormMessage.resources
+E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Admin.FormMainAdmin.resources
+E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Admin.FormManageCalls.resources
+E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Admin.FormManageUsers.resources

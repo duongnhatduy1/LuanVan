@@ -31,7 +31,6 @@ namespace MyFirstSoftPhone_02
         {
             userInfo = u;
             InitializeComponent();
-            
         }
 
         private void InitializeSoftPhone()

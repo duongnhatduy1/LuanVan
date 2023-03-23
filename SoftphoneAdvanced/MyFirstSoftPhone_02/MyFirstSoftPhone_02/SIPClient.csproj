@@ -49,6 +49,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\FormMainAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormMainAdmin.Designer.cs">
+      <DependentUpon>FormMainAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormManageCalls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormManageCalls.Designer.cs">
+      <DependentUpon>FormManageCalls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormManageUsers.Designer.cs">
+      <DependentUpon>FormManageUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Direct_Calling\Direct_Calling.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +94,15 @@
     <Compile Include="Pattern\UserInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Admin\FormMainAdmin.resx">
+      <DependentUpon>FormMainAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormManageCalls.resx">
+      <DependentUpon>FormManageCalls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormManageUsers.resx">
+      <DependentUpon>FormManageUsers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Direct_Calling\Direct_Calling.resx">
       <DependentUpon>Direct_Calling.cs</DependentUpon>
     </EmbeddedResource>
