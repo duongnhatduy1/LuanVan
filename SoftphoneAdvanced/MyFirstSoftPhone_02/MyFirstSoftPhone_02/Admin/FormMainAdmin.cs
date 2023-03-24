@@ -47,6 +47,7 @@ namespace MyFirstSoftPhone_02.Admin
             }
             OpenChildForm(formManageUsers);
             lblTitle.Text = "Quản lý người dùng";
+            panelTitle.Controls.Add(btnAddUser);
             panelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
         }
 
@@ -58,6 +59,7 @@ namespace MyFirstSoftPhone_02.Admin
             }
             OpenChildForm(formManageCalls);
             lblTitle.Text = "Quản lý cuộc gọi";
+            panelTitle.Controls.Remove(btnAddUser);
             panelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
         }
     }

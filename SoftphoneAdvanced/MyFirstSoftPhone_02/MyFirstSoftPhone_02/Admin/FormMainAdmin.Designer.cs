@@ -36,6 +36,7 @@ namespace MyFirstSoftPhone_02.Admin
             this.panelContent = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelTitle = new System.Windows.Forms.Panel();
+            this.btnAddUser = new System.Windows.Forms.Button();
             this.panel_Control.SuspendLayout();
             this.panelTitle.SuspendLayout();
             this.SuspendLayout();
@@ -54,9 +55,14 @@ namespace MyFirstSoftPhone_02.Admin
             // 
             // btnManageCall
             // 
-            this.btnManageCall.Location = new System.Drawing.Point(3, 147);
+            this.btnManageCall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnManageCall.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnManageCall.FlatAppearance.BorderSize = 10;
+            this.btnManageCall.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnManageCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageCall.Location = new System.Drawing.Point(3, 188);
             this.btnManageCall.Name = "btnManageCall";
-            this.btnManageCall.Size = new System.Drawing.Size(109, 55);
+            this.btnManageCall.Size = new System.Drawing.Size(109, 56);
             this.btnManageCall.TabIndex = 2;
             this.btnManageCall.Text = "Quản lý cuộc gọi";
             this.btnManageCall.UseVisualStyleBackColor = true;
@@ -64,9 +70,11 @@ namespace MyFirstSoftPhone_02.Admin
             // 
             // btnManageUser
             // 
-            this.btnManageUser.Location = new System.Drawing.Point(3, 54);
+            this.btnManageUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnManageUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageUser.Location = new System.Drawing.Point(3, 84);
             this.btnManageUser.Name = "btnManageUser";
-            this.btnManageUser.Size = new System.Drawing.Size(109, 55);
+            this.btnManageUser.Size = new System.Drawing.Size(109, 61);
             this.btnManageUser.TabIndex = 1;
             this.btnManageUser.Text = "Quản lý người dùng";
             this.btnManageUser.UseVisualStyleBackColor = true;
@@ -98,11 +106,22 @@ namespace MyFirstSoftPhone_02.Admin
             this.panelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelTitle.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panelTitle.Controls.Add(this.btnAddUser);
             this.panelTitle.Controls.Add(this.lblTitle);
             this.panelTitle.Location = new System.Drawing.Point(127, 0);
             this.panelTitle.Name = "panelTitle";
             this.panelTitle.Size = new System.Drawing.Size(759, 48);
             this.panelTitle.TabIndex = 3;
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddUser.Image = global::MyFirstSoftPhone_02.Properties.Resources.addUser;
+            this.btnAddUser.Location = new System.Drawing.Point(511, 0);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(53, 48);
+            this.btnAddUser.TabIndex = 3;
+            this.btnAddUser.UseVisualStyleBackColor = true;
             // 
             // FormMainAdmin
             // 
@@ -130,5 +149,6 @@ namespace MyFirstSoftPhone_02.Admin
         private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelTitle;
+        private System.Windows.Forms.Button btnAddUser;
     }
 }

@@ -29,27 +29,27 @@ namespace MyFirstSoftPhone_02.Admin
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel_FormCalls = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // panel1
+            // panel_FormCalls
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel_FormCalls.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.AutoScroll = true;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.panel1.Location = new System.Drawing.Point(1, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(795, 451);
-            this.panel1.TabIndex = 1;
+            this.panel_FormCalls.AutoScroll = true;
+            this.panel_FormCalls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel_FormCalls.Location = new System.Drawing.Point(1, 0);
+            this.panel_FormCalls.Name = "panel_FormCalls";
+            this.panel_FormCalls.Size = new System.Drawing.Size(795, 451);
+            this.panel_FormCalls.TabIndex = 1;
             // 
             // FormManageCalls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel_FormCalls);
             this.Name = "FormManageCalls";
             this.Text = "FormManageCalls";
             this.ResumeLayout(false);
@@ -57,6 +57,6 @@ namespace MyFirstSoftPhone_02.Admin
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel_FormCalls;
     }
 }

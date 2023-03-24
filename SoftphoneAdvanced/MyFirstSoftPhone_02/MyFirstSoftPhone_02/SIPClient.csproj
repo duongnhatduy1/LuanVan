@@ -157,6 +157,21 @@
   <ItemGroup>
     <None Include="resources\reset.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\delete.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\update.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\info.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\addUser.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\listen.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
