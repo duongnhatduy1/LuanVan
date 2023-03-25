@@ -128,7 +128,7 @@ namespace MyFirstSoftPhone_02.Admin
         {
             IdClick = (sender as Button).Name.Substring(6, (sender as Button).Name.Length - 6);
             string tempCallname = GetCall_ID();
-            DialogResult dialogResult = MessageBox.Show($"Bạn có chắc xóa {tempCallname} không?", "Xóa người dùng", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show($"Bạn có chắc xóa {tempCallname} không?", "Xóa cuộc gọi", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 _CallButtonDeletes.Remove((sender as Button));

@@ -61,6 +61,12 @@
     <Compile Include="Admin\FormManageCalls.Designer.cs">
       <DependentUpon>FormManageCalls.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\FormManageServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormManageServer.Designer.cs">
+      <DependentUpon>FormManageServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\FormManageUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\FormManageCalls.resx">
       <DependentUpon>FormManageCalls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormManageServer.resx">
+      <DependentUpon>FormManageServer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\FormManageUsers.resx">
       <DependentUpon>FormManageUsers.cs</DependentUpon>

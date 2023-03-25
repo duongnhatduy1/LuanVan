@@ -15,6 +15,8 @@ namespace MyFirstSoftPhone_02.Admin
         private Form CurrentFormChild;
         private FormManageUsers formManageUsers;
         private FormManageCalls formManageCalls;
+        private FormManageServer formManageServer;
+
 
         public FormMainAdmin()
         {
@@ -61,6 +63,18 @@ namespace MyFirstSoftPhone_02.Admin
             lblTitle.Text = "Quản lý cuộc gọi";
             panelTitle.Controls.Remove(btnAddUser);
             panelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+        }
+
+        private void btnManageServer_Click(object sender, EventArgs e)
+        {
+            if (formManageServer == null)
+            {
+                formManageServer = new FormManageServer();
+            }
+            OpenChildForm(formManageServer);
+            lblTitle.Text = "Quản lý Server";
+            panelTitle.Controls.Remove(btnAddUser);
+            panelTitle.BackColor = System.Drawing.SystemColors.ActiveCaption;
         }
     }
 }

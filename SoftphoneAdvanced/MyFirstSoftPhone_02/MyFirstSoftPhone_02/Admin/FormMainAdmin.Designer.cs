@@ -36,6 +36,7 @@ namespace MyFirstSoftPhone_02.Admin
             this.panelContent = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelTitle = new System.Windows.Forms.Panel();
+            this.btnManageServer = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.panel_Control.SuspendLayout();
             this.panelTitle.SuspendLayout();
@@ -46,11 +47,12 @@ namespace MyFirstSoftPhone_02.Admin
             this.panel_Control.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel_Control.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.panel_Control.Controls.Add(this.btnManageServer);
             this.panel_Control.Controls.Add(this.btnManageCall);
             this.panel_Control.Controls.Add(this.btnManageUser);
             this.panel_Control.Location = new System.Drawing.Point(0, 0);
             this.panel_Control.Name = "panel_Control";
-            this.panel_Control.Size = new System.Drawing.Size(121, 435);
+            this.panel_Control.Size = new System.Drawing.Size(121, 503);
             this.panel_Control.TabIndex = 0;
             // 
             // btnManageCall
@@ -87,7 +89,7 @@ namespace MyFirstSoftPhone_02.Admin
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.Location = new System.Drawing.Point(127, 54);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(759, 381);
+            this.panelContent.Size = new System.Drawing.Size(848, 449);
             this.panelContent.TabIndex = 1;
             // 
             // lblTitle
@@ -110,8 +112,23 @@ namespace MyFirstSoftPhone_02.Admin
             this.panelTitle.Controls.Add(this.lblTitle);
             this.panelTitle.Location = new System.Drawing.Point(127, 0);
             this.panelTitle.Name = "panelTitle";
-            this.panelTitle.Size = new System.Drawing.Size(759, 48);
+            this.panelTitle.Size = new System.Drawing.Size(848, 48);
             this.panelTitle.TabIndex = 3;
+            // 
+            // btnManageServer
+            // 
+            this.btnManageServer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnManageServer.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnManageServer.FlatAppearance.BorderSize = 10;
+            this.btnManageServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnManageServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageServer.Location = new System.Drawing.Point(3, 286);
+            this.btnManageServer.Name = "btnManageServer";
+            this.btnManageServer.Size = new System.Drawing.Size(109, 56);
+            this.btnManageServer.TabIndex = 3;
+            this.btnManageServer.Text = "Quản lý Server";
+            this.btnManageServer.UseVisualStyleBackColor = true;
+            this.btnManageServer.Click += new System.EventHandler(this.btnManageServer_Click);
             // 
             // btnAddUser
             // 
@@ -127,7 +144,7 @@ namespace MyFirstSoftPhone_02.Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(885, 433);
+            this.ClientSize = new System.Drawing.Size(974, 501);
             this.Controls.Add(this.panelTitle);
             this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panel_Control);
@@ -150,5 +167,6 @@ namespace MyFirstSoftPhone_02.Admin
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelTitle;
         private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.Button btnManageServer;
     }
 }
