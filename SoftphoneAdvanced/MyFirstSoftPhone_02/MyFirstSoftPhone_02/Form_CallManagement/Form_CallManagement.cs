@@ -79,11 +79,10 @@ namespace MyFirstSoftPhone_02
             {
                 formMessage = new FormMessage(this);
                 formMessage.lblMessageInfo.Text = Receiver;
-                InvokeGUIThread(() => { formMessage.lblMessage.Text += content.ToString(); });
+                InvokeGUIThread(() => { formMessage.lblMessage.Items.Add(content.ToString()); });
                 InvokeGUIThread(() => { formMessage.ShowDialog(); });
-                
             }
-            if (formMessage != null) InvokeGUIThread(() => { formMessage.lblMessage.Text += content.ToString(); });
+            if (formMessage != null) InvokeGUIThread(() => { formMessage.lblMessage.Items.Add(content.ToString()); });
         }
 
 
