@@ -46,12 +46,13 @@
             this.btn_DeleteAll = new System.Windows.Forms.Button();
             this.lbl_NumberToDial = new System.Windows.Forms.TextBox();
             this.lbl_UserLogin = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btn_PickUp = new System.Windows.Forms.Button();
-            this.btn_HangUp = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbInputToChat = new System.Windows.Forms.TextBox();
             this.btnChat = new System.Windows.Forms.Button();
+            this.panel_online = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn_PickUp = new System.Windows.Forms.Button();
+            this.btn_HangUp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lb_Log
@@ -59,7 +60,7 @@
             this.lb_Log.FormattingEnabled = true;
             this.lb_Log.Location = new System.Drawing.Point(13, 78);
             this.lb_Log.Name = "lb_Log";
-            this.lb_Log.Size = new System.Drawing.Size(199, 407);
+            this.lb_Log.Size = new System.Drawing.Size(69, 407);
             this.lb_Log.TabIndex = 0;
             this.lb_Log.SelectedIndexChanged += new System.EventHandler(this.lb_Log_SelectedIndexChanged);
             // 
@@ -248,6 +249,42 @@
             this.lbl_UserLogin.Text = "Unknown";
             this.lbl_UserLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(190, 117);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 20);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Đang online";
+            // 
+            // tbInputToChat
+            // 
+            this.tbInputToChat.Location = new System.Drawing.Point(231, 81);
+            this.tbInputToChat.Name = "tbInputToChat";
+            this.tbInputToChat.Size = new System.Drawing.Size(85, 20);
+            this.tbInputToChat.TabIndex = 22;
+            // 
+            // btnChat
+            // 
+            this.btnChat.Location = new System.Drawing.Point(322, 81);
+            this.btnChat.Name = "btnChat";
+            this.btnChat.Size = new System.Drawing.Size(50, 23);
+            this.btnChat.TabIndex = 23;
+            this.btnChat.Text = "Chat";
+            this.btnChat.UseVisualStyleBackColor = true;
+            this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
+            // 
+            // panel_online
+            // 
+            this.panel_online.AutoScroll = true;
+            this.panel_online.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel_online.Location = new System.Drawing.Point(111, 149);
+            this.panel_online.Name = "panel_online";
+            this.panel_online.Size = new System.Drawing.Size(261, 329);
+            this.panel_online.TabIndex = 24;
+            // 
             // button1
             // 
             this.button1.Image = global::MyFirstSoftPhone_02.Properties.Resources.Person1;
@@ -281,38 +318,12 @@
             this.btn_HangUp.UseVisualStyleBackColor = false;
             this.btn_HangUp.Click += new System.EventHandler(this.btn_HangUp_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(240, 102);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 20);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Đang online";
-            // 
-            // tbInputToChat
-            // 
-            this.tbInputToChat.Location = new System.Drawing.Point(231, 152);
-            this.tbInputToChat.Name = "tbInputToChat";
-            this.tbInputToChat.Size = new System.Drawing.Size(85, 20);
-            this.tbInputToChat.TabIndex = 22;
-            // 
-            // btnChat
-            // 
-            this.btnChat.Location = new System.Drawing.Point(322, 152);
-            this.btnChat.Name = "btnChat";
-            this.btnChat.Size = new System.Drawing.Size(50, 23);
-            this.btnChat.TabIndex = 23;
-            this.btnChat.Text = "Chat";
-            this.btnChat.UseVisualStyleBackColor = true;
-            this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
-            // 
             // Form_CallManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 503);
+            this.Controls.Add(this.panel_online);
             this.Controls.Add(this.btnChat);
             this.Controls.Add(this.tbInputToChat);
             this.Controls.Add(this.label1);
@@ -372,5 +383,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbInputToChat;
         private System.Windows.Forms.Button btnChat;
+        private System.Windows.Forms.Panel panel_online;
     }
 }

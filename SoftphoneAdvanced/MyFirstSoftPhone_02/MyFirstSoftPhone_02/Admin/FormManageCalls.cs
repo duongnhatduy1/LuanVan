@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyFirstSoftPhone_02.Pattern;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -159,8 +161,61 @@ namespace MyFirstSoftPhone_02.Admin
         }
         private void Info_Click(object sender, EventArgs e)
         {
+        string json = @"{
+        'Call_ID': 'afdsklfkdsfhk',
+        'Caller_Username': 'tuhuuduc',
+        'Callee_Username': 'dnduy',
+        'Time_Start': '2023-03-22 09:04:01',
+        'Time_End': '2023-03-22 09:04:55',
+        'Content': 'https://drive.google.com/uc?export=view&id=11C5HuWQkQ_jU7k6_uWNRC5c0PlanpS8p',
+        'Caller_detail': {
+            'id': 1,
+            'username': 'tuhuuduc',
+            'email': 'mailto:tuhuuduc01@gmail.com.vn',
+            'IP': '192.168.1.3',
+            'Port': 64852,
+            'Display_Name': 'Hữu Đức',
+            'Role_ID': 'ad',
+            'Department_ID': 'Dev',
+            'created_at': '2023-03-20 23:17:51',
+            'updated_at': '2023-03-20 23:17:51',
+            'Department_Name': 'Developer',
+            'Role_Name': 'Admin'
+        },
+        'Callee_detail': {
+            'id': 2,
+            'username': 'dnduy',
+            'email': 'mailto:dnduy@gmail.com.vn',
+            'IP': '192.168.1.7',
+            'Port': 57417,
+            'Display_Name': 'Nhật Duy',
+            'Role_ID': 'user',
+            'Department_ID': 'QA',
+            'created_at': '2023-03-20 23:17:51',
+            'updated_at': '2023-03-20 23:17:51',
+            'Department_Name': 'Quality Assurance',
+            'Role_Name': 'user'
+        },
+        'Call_Detail':
+            {
+                'Call_ID': 'afdsklfkdsfhk',
+                'Source_IP': '192.168.1.7',
+                'Source_Port': 64049,
+                'Destination_IP': '192.168.1.7',
+                'Destination_Port': 57417,
+                'Sdp_Port': 8080
+            }
+       
+    }";
+
+            InfoCall data = JsonConvert.DeserializeObject<InfoCall>(json);
+            string info = $@"Call-ID : {data.Call_ID}
+                             Nguoi goi: {data.Caller_detail.Display_Name}
+                             Nguoi nghe: {data.Callee_detail.Display_Name}";
+
+
             IdClick = (sender as Button).Name.Substring(4, (sender as Button).Name.Length - 4);
-            MessageBox.Show("Click on Info " + GetCall_ID());
+            MessageBox.Show(info);
         }
     }
 }

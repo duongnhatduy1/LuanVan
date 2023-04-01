@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using MyFirstSoftPhone_02.Handle_Message;
 using MyFirstSoftPhone_02.Pattern;
+using Newtonsoft.Json;
 using Ozeki.Media;
 using Ozeki.VoIP;
 
@@ -11,6 +14,10 @@ namespace MyFirstSoftPhone_02
 {
     public partial class Form_CallManagement : Form
     {
+        List<Label> _UserOnlineLabel = new List<Label>();
+        List<Button> _ButtonsChat = new List<Button>();
+        List<Button> _UserOnlineInfos = new List<Button>();
+        List<User> _UserOnlines = new List<User>();
         private UserInfo userInfo;
         private ISoftPhone softPhone;
         private IPhoneLine phoneLine;
@@ -31,6 +38,7 @@ namespace MyFirstSoftPhone_02
         {
             userInfo = u;
             InitializeComponent();
+            InitUseronline();
         }
 
         private void InitializeSoftPhone()
@@ -44,7 +52,7 @@ namespace MyFirstSoftPhone_02
 
                 SIPAccount sa = new SIPAccount(true, userInfo.UserName, userInfo.UserName, userInfo.UserName, userInfo.Password, userInfo.ServerIP, 5060);
                 InvokeGUIThread(() => { lb_Log.Items.Add("SIP account logged!"); });
-                
+
                 phoneLine = softPhone.CreatePhoneLine(sa);
                 phoneLine.RegistrationStateChanged += phoneLine_PhoneLineInformation;
                 phoneLine.InstantMessaging.MessageReceived += mySoftphone_IncomingMessage;
@@ -53,7 +61,7 @@ namespace MyFirstSoftPhone_02
 
                 lbl_NumberToDial.Text = string.Empty;
 
-                lbl_UserLogin.Text = "Hi : "+ userInfo.UserName;
+                lbl_UserLogin.Text = "Hi : " + userInfo.UserName;
 
             }
             catch (Exception ex)
@@ -217,7 +225,7 @@ namespace MyFirstSoftPhone_02
 
             if (e.State.IsCallEnded() == true)
             {
-                
+
                 StopDevices();
 
                 mediaReceiver.Detach();
@@ -342,7 +350,7 @@ namespace MyFirstSoftPhone_02
             }
 
             lbl_NumberToDial.Text = string.Empty;
-            
+
         }
 
         private void lb_Log_SelectedIndexChanged(object sender, EventArgs e)
@@ -360,6 +368,83 @@ namespace MyFirstSoftPhone_02
             phoneLine.InstantMessaging.SendMessage(message);
         }
 
+        public void InitUseronline()
+        {
+            string json = @"{
+         'Users': [
+            {
+            'id': 1,
+            'username': 'tuhuuduc',
+            'email': 'mailto:tuhuuduc01@gmail.com.vn',
+            'IP': '192.168.1.3',
+            'Port': 64852,
+            'Display_Name': 'Hữu Đức',
+            'Role_ID': 'ad',
+            'Department_ID': 'Dev',
+            'created_at': '2023-03-20 23:17:51',
+            'updated_at': '2023-03-20 23:17:51',
+            'Department_Name': 'Developer',
+            'Role_Name': 'Admin'
+            },
+            {
+            'id': 2,
+            'username': 'dnduy',
+            'email': 'mailto:dnduy@gmail.com.vn',
+            'IP': '192.168.1.7',
+            'Port': 57417,
+            'Display_Name': 'Nhật Duy',
+            'Role_ID': 'user',
+            'Department_ID': 'QA',
+            'created_at': '2023-03-20 23:17:51',
+            'updated_at': '2023-03-20 23:17:51',
+            'Department_Name': 'Quality Assurance',
+            'Role_Name': 'user'
+            }
+            ]}";
+
+            var data = JsonConvert.DeserializeObject<UserList>(json);
+            _UserOnlines = data.Users;
+            int i = 0;
+            foreach (var u in _UserOnlines)
+            {
+                //button info
+                i++;
+                var nguoidung = new System.Windows.Forms.Button();
+                nguoidung.Location = new System.Drawing.Point(170, -30 + 40 * i);
+                nguoidung.Name = "info" + u.username;
+                nguoidung.Size = new System.Drawing.Size(25, 25);
+                nguoidung.TabIndex = 1;
+                nguoidung.UseVisualStyleBackColor = true;
+                nguoidung.Image = global::MyFirstSoftPhone_02.Properties.Resources.info;
+                nguoidung.Cursor = System.Windows.Forms.Cursors.Hand;
+                panel_online.Controls.Add(nguoidung);
+                nguoidung.Click += new System.EventHandler(Info_Click);
+
+                //label username online
+                var label = new System.Windows.Forms.Label();
+                panel_online.Controls.Add(label);
+                label.AutoSize = true;
+                label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                label.Location = new System.Drawing.Point(5, -30 + 40 * i);
+                label.Name = "lblUsername" + u.username;
+                label.Size = new System.Drawing.Size(75, 25);
+                label.TabIndex = 3;
+                label.Text = u.username;
+
+                //button chat
+                nguoidung = new System.Windows.Forms.Button();
+                nguoidung.Location = new System.Drawing.Point(200, -30 + 40 * i);
+                nguoidung.Name = label.Text;
+                nguoidung.Size = new System.Drawing.Size(33, 27);
+                nguoidung.TabIndex = 1;
+                nguoidung.UseVisualStyleBackColor = true;
+                nguoidung.Image = global::MyFirstSoftPhone_02.Properties.Resources.chat;
+                nguoidung.Cursor = System.Windows.Forms.Cursors.Hand;
+                panel_online.Controls.Add(nguoidung);
+                nguoidung.Click += new System.EventHandler(btnChat_Click_Online);
+            }
+        }
+
         private void btnChat_Click(object sender, EventArgs e)
         {
             if (formMessage == null)
@@ -368,8 +453,32 @@ namespace MyFirstSoftPhone_02
                 Receiver = tbInputToChat.Text.Trim();
                 formMessage.lblMessageInfo.Text = tbInputToChat.Text;
                 InvokeGUIThread(() => { formMessage.ShowDialog(); });
-
             }
+        }
+
+        private void btnChat_Click_Online(object sender, EventArgs e)
+        {
+            if (formMessage == null)
+            {
+                formMessage = new FormMessage(this);
+                Receiver = (sender as Button).Name;
+                formMessage.lblMessageInfo.Text = (sender as Button).Name;
+                InvokeGUIThread(() => { formMessage.ShowDialog(); });
+            }
+        }
+
+        private void Info_Click(object sender, EventArgs e)
+        {
+            string username = (sender as Button).Name.Substring(4, (sender as Button).Name.Length - 4);
+            var u = _UserOnlines.SingleOrDefault(p => p.username == username);
+            string info = 
+                 $"Username: {u.username}\n\n" +
+                 $"Tên hiển thị: {u.Display_Name}\n\n" +
+                 $"Bộ phận: {u.Department_Name}\n";
+
+
+            //IdClick = (sender as Button).Name.Substring(4, (sender as Button).Name.Length - 4);
+            MessageBox.Show(info);
         }
     }
 }
