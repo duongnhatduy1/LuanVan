@@ -18,20 +18,73 @@ namespace MyFirstSoftPhone_02.Admin
         List<Button> _CallButtonDeletes = new List<Button>();
         List<Button> _CallButtonListens = new List<Button>();
         List<Button> _CallButtonInfos = new List<Button>();
+        List<InfoCall> _InfoCalls = new List<InfoCall>();
+
         string IdClick = "";
+        string json = @"{
+        'Call_ID': 'afdsklfkdsfhk',
+        'Caller_Username': 'tuhuuduc',
+        'Callee_Username': 'dnduy',
+        'Time_Start': '2023-03-22 09:04:01',
+        'Time_End': '2023-03-22 09:04:55',
+        'Content': 'https://drive.google.com/uc?export=view&id=11C5HuWQkQ_jU7k6_uWNRC5c0PlanpS8p',
+        'Caller_detail': {
+            'id': 1,
+            'username': 'tuhuuduc',
+            'email': 'mailto:tuhuuduc01@gmail.com.vn',
+            'IP': '192.168.1.3',
+            'Port': 64852,
+            'Display_Name': 'Hữu Đức',
+            'Role_ID': 'ad',
+            'Department_ID': 'Dev',
+            'created_at': '2023-03-20 23:17:51',
+            'updated_at': '2023-03-20 23:17:51',
+            'Department_Name': 'Developer',
+            'Role_Name': 'Admin'
+        },
+        'Callee_detail': {
+            'id': 2,
+            'username': 'dnduy',
+            'email': 'mailto:dnduy@gmail.com.vn',
+            'IP': '192.168.1.7',
+            'Port': 57417,
+            'Display_Name': 'Nhật Duy',
+            'Role_ID': 'user',
+            'Department_ID': 'QA',
+            'created_at': '2023-03-20 23:17:51',
+            'updated_at': '2023-03-20 23:17:51',
+            'Department_Name': 'Quality Assurance',
+            'Role_Name': 'user'
+        },
+        'Call_Detail':
+            {
+                'Call_ID': 'afdsklfkdsfhk',
+                'Source_IP': '192.168.1.7',
+                'Source_Port': 64049,
+                'Destination_IP': '192.168.1.7',
+                'Destination_Port': 57417,
+                'Sdp_Port': 8080
+            }
+       
+    }";
 
         public FormManageCalls()
         {
             InitializeComponent();
+            InfoCall data = JsonConvert.DeserializeObject<InfoCall>(json);
+            _InfoCalls.Add(data);
             InitCalls();
+
         }
 
 
         public void InitCalls()
         {
-            for (int i = 1; i < 21; i++)
+            int i = 0;
+            foreach (var u in _InfoCalls)
             {
                 //button delete
+                i++;
                 var nguoidung = new System.Windows.Forms.Button();
                 nguoidung.Location = new System.Drawing.Point(611, -45 + 50 * i);
                 nguoidung.Name = "delete" + i;
@@ -44,23 +97,12 @@ namespace MyFirstSoftPhone_02.Admin
                 _CallButtonDeletes.Add(nguoidung);
                 nguoidung.Click += new System.EventHandler(Delete_Click);
 
-                //button info
-                nguoidung = new System.Windows.Forms.Button();
-                nguoidung.Location = new System.Drawing.Point(531, -45 + 50 * i);
-                nguoidung.Name = "info" + i;
-                nguoidung.Size = new System.Drawing.Size(35, 35);
-                nguoidung.TabIndex = 1;
-                nguoidung.UseVisualStyleBackColor = true;
-                nguoidung.Image = global::MyFirstSoftPhone_02.Properties.Resources.info;
-                nguoidung.Cursor = System.Windows.Forms.Cursors.Hand;
-                panel_FormCalls.Controls.Add(nguoidung);
-                _CallButtonInfos.Add(nguoidung);
-                nguoidung.Click += new System.EventHandler(Info_Click);
+                
 
                 //button listen
                 nguoidung = new System.Windows.Forms.Button();
                 nguoidung.Location = new System.Drawing.Point(570, -45 + 50 * i);
-                nguoidung.Name = "listen" + i;
+                nguoidung.Name = u.Content;
                 nguoidung.Size = new System.Drawing.Size(35, 35);
                 nguoidung.TabIndex = 1;
                 nguoidung.UseVisualStyleBackColor = true;
@@ -76,11 +118,24 @@ namespace MyFirstSoftPhone_02.Admin
                 label.AutoSize = true;
                 label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 label.Location = new System.Drawing.Point(100, -45 + 50 * i);
-                label.Name = "lblCall_ID" + i;
+                label.Name = "lblCall_ID" + u.Call_ID;
                 label.Size = new System.Drawing.Size(251, 31);
                 label.TabIndex = 3;
                 label.Text = "Call_ID: abcdefghijklmnop" + i;
                 _CallLabelCallID.Add(label);
+
+                //button info
+                nguoidung = new System.Windows.Forms.Button();
+                nguoidung.Location = new System.Drawing.Point(531, -45 + 50 * i);
+                nguoidung.Name = "info" + label.Name;
+                nguoidung.Size = new System.Drawing.Size(35, 35);
+                nguoidung.TabIndex = 1;
+                nguoidung.UseVisualStyleBackColor = true;
+                nguoidung.Image = global::MyFirstSoftPhone_02.Properties.Resources.info;
+                nguoidung.Cursor = System.Windows.Forms.Cursors.Hand;
+                panel_FormCalls.Controls.Add(nguoidung);
+                _CallButtonInfos.Add(nguoidung);
+                nguoidung.Click += new System.EventHandler(Info_Click);
             }
         }
         public void LoadCalls()
@@ -156,65 +211,22 @@ namespace MyFirstSoftPhone_02.Admin
 
         private void Listen_Click(object sender, EventArgs e)
         {
-            IdClick = (sender as Button).Name.Substring(6, (sender as Button).Name.Length - 6);
-            MessageBox.Show("Click on listen  " + GetCall_ID());
+            string url = (sender as Button).Name;
+        IdClick = (sender as Button).Name.Substring(6, (sender as Button).Name.Length - 6);
+            InfoCall data = JsonConvert.DeserializeObject<InfoCall>(json);
+            MessageBox.Show(url);
+
         }
         private void Info_Click(object sender, EventArgs e)
         {
-        string json = @"{
-        'Call_ID': 'afdsklfkdsfhk',
-        'Caller_Username': 'tuhuuduc',
-        'Callee_Username': 'dnduy',
-        'Time_Start': '2023-03-22 09:04:01',
-        'Time_End': '2023-03-22 09:04:55',
-        'Content': 'https://drive.google.com/uc?export=view&id=11C5HuWQkQ_jU7k6_uWNRC5c0PlanpS8p',
-        'Caller_detail': {
-            'id': 1,
-            'username': 'tuhuuduc',
-            'email': 'mailto:tuhuuduc01@gmail.com.vn',
-            'IP': '192.168.1.3',
-            'Port': 64852,
-            'Display_Name': 'Hữu Đức',
-            'Role_ID': 'ad',
-            'Department_ID': 'Dev',
-            'created_at': '2023-03-20 23:17:51',
-            'updated_at': '2023-03-20 23:17:51',
-            'Department_Name': 'Developer',
-            'Role_Name': 'Admin'
-        },
-        'Callee_detail': {
-            'id': 2,
-            'username': 'dnduy',
-            'email': 'mailto:dnduy@gmail.com.vn',
-            'IP': '192.168.1.7',
-            'Port': 57417,
-            'Display_Name': 'Nhật Duy',
-            'Role_ID': 'user',
-            'Department_ID': 'QA',
-            'created_at': '2023-03-20 23:17:51',
-            'updated_at': '2023-03-20 23:17:51',
-            'Department_Name': 'Quality Assurance',
-            'Role_Name': 'user'
-        },
-        'Call_Detail':
-            {
-                'Call_ID': 'afdsklfkdsfhk',
-                'Source_IP': '192.168.1.7',
-                'Source_Port': 64049,
-                'Destination_IP': '192.168.1.7',
-                'Destination_Port': 57417,
-                'Sdp_Port': 8080
-            }
-       
-    }";
+            string CallID = (sender as Button).Name.Substring(14, (sender as Button).Name.Length - 14);
+            var u = _InfoCalls.SingleOrDefault(p => p.Call_ID == CallID);
+            string info = $"Call-ID : {u.Call_ID}\n\n" +
+                          $"Nguoi goi: {u.Caller_detail.Display_Name}\n\n" +
+                          $"Nguoi nghe: {u.Callee_detail.Display_Name}\n\n" +
+                          $"Cuộc gọi bắt đầu lúc : {u.Time_Start}\n\n" +
+                          $"Cuộc gọi kết thúc lúc: {u.Time_End}\n";
 
-            InfoCall data = JsonConvert.DeserializeObject<InfoCall>(json);
-            string info = $@"Call-ID : {data.Call_ID}
-                             Nguoi goi: {data.Caller_detail.Display_Name}
-                             Nguoi nghe: {data.Callee_detail.Display_Name}";
-
-
-            IdClick = (sender as Button).Name.Substring(4, (sender as Button).Name.Length - 4);
             MessageBox.Show(info);
         }
     }
