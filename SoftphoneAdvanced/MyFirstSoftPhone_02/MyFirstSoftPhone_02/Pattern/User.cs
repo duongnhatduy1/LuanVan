@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyFirstSoftPhone_02.Pattern
 {
-    class User
+    public class User
     {
         public string id { get; set; }
         public string username { get; set; }

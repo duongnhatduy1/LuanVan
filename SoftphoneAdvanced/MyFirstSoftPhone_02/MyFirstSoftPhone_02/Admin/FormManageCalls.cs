@@ -83,24 +83,9 @@ namespace MyFirstSoftPhone_02.Admin
             int i = 0;
             foreach (var u in _InfoCalls)
             {
-                //button delete
                 i++;
-                var nguoidung = new System.Windows.Forms.Button();
-                nguoidung.Location = new System.Drawing.Point(611, -45 + 50 * i);
-                nguoidung.Name = "delete" + i;
-                nguoidung.Size = new System.Drawing.Size(35, 35);
-                nguoidung.TabIndex = 1;
-                nguoidung.UseVisualStyleBackColor = true;
-                nguoidung.Image = global::MyFirstSoftPhone_02.Properties.Resources.delete;
-                nguoidung.Cursor = System.Windows.Forms.Cursors.Hand;
-                panel_FormCalls.Controls.Add(nguoidung);
-                _CallButtonDeletes.Add(nguoidung);
-                nguoidung.Click += new System.EventHandler(Delete_Click);
-
-                
-
                 //button listen
-                nguoidung = new System.Windows.Forms.Button();
+                var nguoidung = new System.Windows.Forms.Button();
                 nguoidung.Location = new System.Drawing.Point(570, -45 + 50 * i);
                 nguoidung.Name = u.Content;
                 nguoidung.Size = new System.Drawing.Size(35, 35);
@@ -121,7 +106,7 @@ namespace MyFirstSoftPhone_02.Admin
                 label.Name = "lblCall_ID" + u.Call_ID;
                 label.Size = new System.Drawing.Size(251, 31);
                 label.TabIndex = 3;
-                label.Text = "Call_ID: abcdefghijklmnop" + i;
+                label.Text = u.Call_ID;
                 _CallLabelCallID.Add(label);
 
                 //button info
@@ -136,6 +121,19 @@ namespace MyFirstSoftPhone_02.Admin
                 panel_FormCalls.Controls.Add(nguoidung);
                 _CallButtonInfos.Add(nguoidung);
                 nguoidung.Click += new System.EventHandler(Info_Click);
+
+                //button delete
+                nguoidung = new System.Windows.Forms.Button();
+                nguoidung.Location = new System.Drawing.Point(611, -45 + 50 * i);
+                nguoidung.Name = u.Call_ID;
+                nguoidung.Size = new System.Drawing.Size(35, 35);
+                nguoidung.TabIndex = 1;
+                nguoidung.UseVisualStyleBackColor = true;
+                nguoidung.Image = global::MyFirstSoftPhone_02.Properties.Resources.delete;
+                nguoidung.Cursor = System.Windows.Forms.Cursors.Hand;
+                panel_FormCalls.Controls.Add(nguoidung);
+                _CallButtonDeletes.Add(nguoidung);
+                nguoidung.Click += new System.EventHandler(Delete_Click);
             }
         }
         public void LoadCalls()
@@ -183,30 +181,28 @@ namespace MyFirstSoftPhone_02.Admin
         }
         private void Delete_Click(object sender, EventArgs e)
         {
-            IdClick = (sender as Button).Name.Substring(6, (sender as Button).Name.Length - 6);
-            string tempCallname = GetCall_ID();
-            DialogResult dialogResult = MessageBox.Show($"Bạn có chắc xóa {tempCallname} không?", "Xóa cuộc gọi", MessageBoxButtons.YesNo);
+            string tempCallID = (sender as Button).Name;
+            DialogResult dialogResult = MessageBox.Show($"Bạn có chắc xóa Call_ID {tempCallID} không?", "Xóa cuộc gọi", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                _CallButtonDeletes.Remove((sender as Button));
+                //_CallButtonDeletes.Remove((sender as Button));
 
-                foreach (var b in _CallButtonInfos.ToArray())
-                    if (b.Name == "info" + IdClick)
-                        _CallButtonInfos.Remove(b);
+                //foreach (var b in _CallButtonInfos.ToArray())
+                //    if (b.Name == "info" + IdClick)
+                //        _CallButtonInfos.Remove(b);
 
-                foreach (var b in _CallButtonListens.ToArray())
-                    if (b.Name == "listen" + IdClick)
-                        _CallButtonListens.Remove(b);
+                //foreach (var b in _CallButtonListens.ToArray())
+                //    if (b.Name == "listen" + IdClick)
+                //        _CallButtonListens.Remove(b);
 
-                foreach (var b in _CallLabelCallID.ToArray())
-                    if (b.Name == "lblCall_ID" + IdClick)
-                        _CallLabelCallID.Remove(b);
-                panel_FormCalls.Controls.Clear();
-                LoadCalls();
+                //foreach (var b in _CallLabelCallID.ToArray())
+                //    if (b.Name == "lblCall_ID" + IdClick)
+                //        _CallLabelCallID.Remove(b);
+                //panel_FormCalls.Controls.Clear();
+                //LoadCalls();
+                //viet code get cuộc gọi mới
+                MessageBox.Show($"Bạn đã xóa Call-ID {tempCallID}");
             }
-
-
-
         }
 
         private void Listen_Click(object sender, EventArgs e)
