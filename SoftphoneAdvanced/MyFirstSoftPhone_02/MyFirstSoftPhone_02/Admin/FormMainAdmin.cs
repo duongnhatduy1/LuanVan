@@ -76,5 +76,17 @@ namespace MyFirstSoftPhone_02.Admin
             panelTitle.Controls.Remove(btnAddUser);
             panelTitle.BackColor = System.Drawing.SystemColors.ActiveCaption;
         }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            AddUser addUser = null;
+            if (addUser == null)
+            {
+                {
+                    addUser = new AddUser();
+                    addUser.ShowDialog();
+                }
+            }
+        }
     }
 }

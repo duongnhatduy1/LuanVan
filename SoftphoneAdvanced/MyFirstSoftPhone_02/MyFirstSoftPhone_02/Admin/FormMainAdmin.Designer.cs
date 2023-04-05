@@ -31,12 +31,12 @@ namespace MyFirstSoftPhone_02.Admin
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMainAdmin));
             this.panel_Control = new System.Windows.Forms.Panel();
+            this.btnManageServer = new System.Windows.Forms.Button();
             this.btnManageCall = new System.Windows.Forms.Button();
             this.btnManageUser = new System.Windows.Forms.Button();
             this.panelContent = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panelTitle = new System.Windows.Forms.Panel();
-            this.btnManageServer = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.panel_Control.SuspendLayout();
             this.panelTitle.SuspendLayout();
@@ -54,6 +54,21 @@ namespace MyFirstSoftPhone_02.Admin
             this.panel_Control.Name = "panel_Control";
             this.panel_Control.Size = new System.Drawing.Size(121, 503);
             this.panel_Control.TabIndex = 0;
+            // 
+            // btnManageServer
+            // 
+            this.btnManageServer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnManageServer.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnManageServer.FlatAppearance.BorderSize = 10;
+            this.btnManageServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnManageServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManageServer.Location = new System.Drawing.Point(3, 286);
+            this.btnManageServer.Name = "btnManageServer";
+            this.btnManageServer.Size = new System.Drawing.Size(109, 56);
+            this.btnManageServer.TabIndex = 3;
+            this.btnManageServer.Text = "Quản lý Server";
+            this.btnManageServer.UseVisualStyleBackColor = true;
+            this.btnManageServer.Click += new System.EventHandler(this.btnManageServer_Click);
             // 
             // btnManageCall
             // 
@@ -115,21 +130,6 @@ namespace MyFirstSoftPhone_02.Admin
             this.panelTitle.Size = new System.Drawing.Size(848, 48);
             this.panelTitle.TabIndex = 3;
             // 
-            // btnManageServer
-            // 
-            this.btnManageServer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnManageServer.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.btnManageServer.FlatAppearance.BorderSize = 10;
-            this.btnManageServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.btnManageServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManageServer.Location = new System.Drawing.Point(3, 286);
-            this.btnManageServer.Name = "btnManageServer";
-            this.btnManageServer.Size = new System.Drawing.Size(109, 56);
-            this.btnManageServer.TabIndex = 3;
-            this.btnManageServer.Text = "Quản lý Server";
-            this.btnManageServer.UseVisualStyleBackColor = true;
-            this.btnManageServer.Click += new System.EventHandler(this.btnManageServer_Click);
-            // 
             // btnAddUser
             // 
             this.btnAddUser.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -139,6 +139,7 @@ namespace MyFirstSoftPhone_02.Admin
             this.btnAddUser.Size = new System.Drawing.Size(53, 48);
             this.btnAddUser.TabIndex = 3;
             this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // FormMainAdmin
             // 
