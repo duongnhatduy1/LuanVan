@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using MyFirstSoftPhone_02.Admin;
 using MyFirstSoftPhone_02.Handle_Message;
+using MyFirstSoftPhone_02.HistoryCalls;
 using MyFirstSoftPhone_02.Pattern;
 using Newtonsoft.Json;
 using Ozeki.Media;
@@ -18,6 +20,7 @@ namespace MyFirstSoftPhone_02
         List<Button> _ButtonsChat = new List<Button>();
         List<Button> _UserOnlineInfos = new List<Button>();
         List<User> _UserOnlines = new List<User>();
+        User _me;
         private UserInfo userInfo;
         private ISoftPhone softPhone;
         private IPhoneLine phoneLine;
@@ -404,6 +407,7 @@ namespace MyFirstSoftPhone_02
 
             var data = JsonConvert.DeserializeObject<UserList>(json);
             _UserOnlines = data.Users;
+            _me = _UserOnlines[0];
             int i = 0;
             foreach (var u in _UserOnlines)
             {
@@ -479,6 +483,42 @@ namespace MyFirstSoftPhone_02
 
             //IdClick = (sender as Button).Name.Substring(4, (sender as Button).Name.Length - 4);
             MessageBox.Show(info);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddUser addUser = null;
+            if (addUser == null)
+            {
+                {
+                    addUser = new AddUser(_me);
+                    addUser.ShowDialog();
+                }
+            }
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            FormChangePassword formChangePassword = null;
+            if (formChangePassword == null)
+            {
+                {
+                    formChangePassword = new FormChangePassword();
+                    formChangePassword.ShowDialog();
+                }
+            }
+        }
+
+        private void btnHistoryCall_Click(object sender, EventArgs e)
+        {
+            FormCallsHistory formHistory = null;
+            if (formHistory == null)
+            {
+                {
+                    formHistory = new FormCallsHistory(_me);
+                    formHistory.ShowDialog();
+                }
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ namespace MyFirstSoftPhone_02.Admin
 {
     public partial class AddUser : Form
     {
+        User _me;
         string _username = "";
         string _password = "";
         string _displayName = "";
@@ -25,12 +26,30 @@ namespace MyFirstSoftPhone_02.Admin
             Process();
         }
 
+        public AddUser(User u)
+        {
+            _me = u;
+            InitializeComponent();
+            Process_user();
+        }
+
         void Process()
         {
             cbxRole.Text = "Người dùng";
             cbxDepartment.Text = "Kế toán";
             tbUsername.Focus();
 
+        }
+
+        void Process_user()
+        {
+            cbxRole.Text = _me.Role_Name;
+            cbxDepartment.Text = _me.Department_Name;
+            tbUsername.Text = _me.username;
+            tbDisplayName.Text = _me.Display_Name;
+            tbEmail.Text = _me.email;
+            cbxRole.Enabled = false;
+            tbUsername.Enabled = false;
         }
         private void btnExit_Click(object sender, EventArgs e)
         {

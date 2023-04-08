@@ -50,17 +50,19 @@
             this.tbInputToChat = new System.Windows.Forms.TextBox();
             this.btnChat = new System.Windows.Forms.Button();
             this.panel_online = new System.Windows.Forms.Panel();
+            this.btnChangePassword = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_PickUp = new System.Windows.Forms.Button();
             this.btn_HangUp = new System.Windows.Forms.Button();
+            this.btnHistoryCall = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lb_Log
             // 
             this.lb_Log.FormattingEnabled = true;
-            this.lb_Log.Location = new System.Drawing.Point(13, 78);
+            this.lb_Log.Location = new System.Drawing.Point(13, 195);
             this.lb_Log.Name = "lb_Log";
-            this.lb_Log.Size = new System.Drawing.Size(69, 407);
+            this.lb_Log.Size = new System.Drawing.Size(69, 290);
             this.lb_Log.TabIndex = 0;
             this.lb_Log.SelectedIndexChanged += new System.EventHandler(this.lb_Log_SelectedIndexChanged);
             // 
@@ -224,7 +226,6 @@
             // 
             // lbl_NumberToDial
             // 
-            this.lbl_NumberToDial.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lbl_NumberToDial.BackColor = System.Drawing.Color.White;
             this.lbl_NumberToDial.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_NumberToDial.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -232,7 +233,6 @@
             this.lbl_NumberToDial.Name = "lbl_NumberToDial";
             this.lbl_NumberToDial.Size = new System.Drawing.Size(246, 40);
             this.lbl_NumberToDial.TabIndex = 16;
-            this.lbl_NumberToDial.Text = "label1";
             // 
             // lbl_UserLogin
             // 
@@ -252,6 +252,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Lime;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(190, 117);
             this.label1.Name = "label1";
@@ -285,6 +286,20 @@
             this.panel_online.Size = new System.Drawing.Size(261, 329);
             this.panel_online.TabIndex = 24;
             // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnChangePassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChangePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChangePassword.ForeColor = System.Drawing.Color.Maroon;
+            this.btnChangePassword.Location = new System.Drawing.Point(12, 70);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(118, 31);
+            this.btnChangePassword.TabIndex = 25;
+            this.btnChangePassword.Text = "Đổi mất khẩu";
+            this.btnChangePassword.UseVisualStyleBackColor = false;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            // 
             // button1
             // 
             this.button1.Image = global::MyFirstSoftPhone_02.Properties.Resources.Person1;
@@ -293,6 +308,7 @@
             this.button1.Size = new System.Drawing.Size(48, 50);
             this.button1.TabIndex = 20;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btn_PickUp
             // 
@@ -318,11 +334,28 @@
             this.btn_HangUp.UseVisualStyleBackColor = false;
             this.btn_HangUp.Click += new System.EventHandler(this.btn_HangUp_Click);
             // 
+            // btnHistoryCall
+            // 
+            this.btnHistoryCall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHistoryCall.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnHistoryCall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHistoryCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistoryCall.ForeColor = System.Drawing.Color.Black;
+            this.btnHistoryCall.Location = new System.Drawing.Point(633, 12);
+            this.btnHistoryCall.Name = "btnHistoryCall";
+            this.btnHistoryCall.Size = new System.Drawing.Size(127, 33);
+            this.btnHistoryCall.TabIndex = 26;
+            this.btnHistoryCall.Text = "Lịch sử cuộc gọi";
+            this.btnHistoryCall.UseVisualStyleBackColor = false;
+            this.btnHistoryCall.Click += new System.EventHandler(this.btnHistoryCall_Click);
+            // 
             // Form_CallManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 503);
+            this.Controls.Add(this.btnHistoryCall);
+            this.Controls.Add(this.btnChangePassword);
             this.Controls.Add(this.panel_online);
             this.Controls.Add(this.btnChat);
             this.Controls.Add(this.tbInputToChat);
@@ -384,5 +417,7 @@
         private System.Windows.Forms.TextBox tbInputToChat;
         private System.Windows.Forms.Button btnChat;
         private System.Windows.Forms.Panel panel_online;
+        private System.Windows.Forms.Button btnChangePassword;
+        private System.Windows.Forms.Button btnHistoryCall;
     }
 }

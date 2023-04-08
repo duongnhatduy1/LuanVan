@@ -58,6 +58,12 @@
     <Compile Include="Admin\AddUser.Designer.cs">
       <DependentUpon>AddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\FormChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormChangePassword.Designer.cs">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\FormMainAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,12 +112,19 @@
     <Compile Include="Handle_Message\FormMessage.Designer.cs">
       <DependentUpon>FormMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="HistoryCalls\FormCallsHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryCalls\FormCallsHistory.Designer.cs">
+      <DependentUpon>FormCallsHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pattern\CallInfoList.cs" />
     <Compile Include="Pattern\Call_Detail.cs" />
     <Compile Include="Pattern\InfoCall.cs" />
     <Compile Include="Pattern\User.cs" />
@@ -121,6 +134,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Admin\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormChangePassword.resx">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\FormMainAdmin.resx">
       <DependentUpon>FormMainAdmin.cs</DependentUpon>
@@ -145,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Handle_Message\FormMessage.resx">
       <DependentUpon>FormMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryCalls\FormCallsHistory.resx">
+      <DependentUpon>FormCallsHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
