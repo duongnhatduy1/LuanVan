@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -208,10 +209,23 @@ namespace MyFirstSoftPhone_02.Admin
         private void Listen_Click(object sender, EventArgs e)
         {
             string url = (sender as Button).Name;
-        IdClick = (sender as Button).Name.Substring(6, (sender as Button).Name.Length - 6);
-            InfoCall data = JsonConvert.DeserializeObject<InfoCall>(json);
-            MessageBox.Show(url);
-
+            SoundPlayer Sound = new SoundPlayer(url);
+            //InfoCall data = JsonConvert.DeserializeObject<InfoCall>(json);
+            if ((sender as Button).TabIndex == 3)
+            {
+                (sender as Button).Image = global::MyFirstSoftPhone_02.Properties.Resources.listen;
+                Sound.Stop();
+                (sender as Button).TabIndex = 1;
+                return;
+            }
+            foreach (var u in _CallButtonListens.ToArray())
+            {
+                u.TabIndex = 1;
+                u.Image = global::MyFirstSoftPhone_02.Properties.Resources.listen;
+            }
+            (sender as Button).TabIndex = 3;
+            (sender as Button).Image = global::MyFirstSoftPhone_02.Properties.Resources.nolisten;
+            Sound.Play();
         }
         private void Info_Click(object sender, EventArgs e)
         {

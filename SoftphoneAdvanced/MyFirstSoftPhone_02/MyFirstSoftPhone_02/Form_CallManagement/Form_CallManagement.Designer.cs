@@ -48,19 +48,19 @@
             this.lbl_UserLogin = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbInputToChat = new System.Windows.Forms.TextBox();
-            this.btnChat = new System.Windows.Forms.Button();
             this.panel_online = new System.Windows.Forms.Panel();
             this.btnChangePassword = new System.Windows.Forms.Button();
+            this.btnHistoryCall = new System.Windows.Forms.Button();
+            this.btnChat = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_PickUp = new System.Windows.Forms.Button();
             this.btn_HangUp = new System.Windows.Forms.Button();
-            this.btnHistoryCall = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lb_Log
             // 
             this.lb_Log.FormattingEnabled = true;
-            this.lb_Log.Location = new System.Drawing.Point(13, 195);
+            this.lb_Log.Location = new System.Drawing.Point(1, 130);
             this.lb_Log.Name = "lb_Log";
             this.lb_Log.Size = new System.Drawing.Size(69, 290);
             this.lb_Log.TabIndex = 0;
@@ -267,23 +267,13 @@
             this.tbInputToChat.Size = new System.Drawing.Size(85, 20);
             this.tbInputToChat.TabIndex = 22;
             // 
-            // btnChat
-            // 
-            this.btnChat.Location = new System.Drawing.Point(322, 81);
-            this.btnChat.Name = "btnChat";
-            this.btnChat.Size = new System.Drawing.Size(50, 23);
-            this.btnChat.TabIndex = 23;
-            this.btnChat.Text = "Chat";
-            this.btnChat.UseVisualStyleBackColor = true;
-            this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
-            // 
             // panel_online
             // 
             this.panel_online.AutoScroll = true;
             this.panel_online.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel_online.Location = new System.Drawing.Point(111, 149);
+            this.panel_online.Location = new System.Drawing.Point(76, 140);
             this.panel_online.Name = "panel_online";
-            this.panel_online.Size = new System.Drawing.Size(261, 329);
+            this.panel_online.Size = new System.Drawing.Size(305, 329);
             this.panel_online.TabIndex = 24;
             // 
             // btnChangePassword
@@ -299,6 +289,31 @@
             this.btnChangePassword.Text = "Đổi mất khẩu";
             this.btnChangePassword.UseVisualStyleBackColor = false;
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            // 
+            // btnHistoryCall
+            // 
+            this.btnHistoryCall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHistoryCall.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnHistoryCall.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHistoryCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistoryCall.ForeColor = System.Drawing.Color.Black;
+            this.btnHistoryCall.Location = new System.Drawing.Point(633, 12);
+            this.btnHistoryCall.Name = "btnHistoryCall";
+            this.btnHistoryCall.Size = new System.Drawing.Size(127, 33);
+            this.btnHistoryCall.TabIndex = 26;
+            this.btnHistoryCall.Text = "Lịch sử cuộc gọi";
+            this.btnHistoryCall.UseVisualStyleBackColor = false;
+            this.btnHistoryCall.Click += new System.EventHandler(this.btnHistoryCall_Click);
+            // 
+            // btnChat
+            // 
+            this.btnChat.Location = new System.Drawing.Point(322, 81);
+            this.btnChat.Name = "btnChat";
+            this.btnChat.Size = new System.Drawing.Size(50, 23);
+            this.btnChat.TabIndex = 23;
+            this.btnChat.Text = "Chat";
+            this.btnChat.UseVisualStyleBackColor = true;
+            this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
             // 
             // button1
             // 
@@ -333,21 +348,6 @@
             this.btn_HangUp.TabIndex = 2;
             this.btn_HangUp.UseVisualStyleBackColor = false;
             this.btn_HangUp.Click += new System.EventHandler(this.btn_HangUp_Click);
-            // 
-            // btnHistoryCall
-            // 
-            this.btnHistoryCall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHistoryCall.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnHistoryCall.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHistoryCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistoryCall.ForeColor = System.Drawing.Color.Black;
-            this.btnHistoryCall.Location = new System.Drawing.Point(633, 12);
-            this.btnHistoryCall.Name = "btnHistoryCall";
-            this.btnHistoryCall.Size = new System.Drawing.Size(127, 33);
-            this.btnHistoryCall.TabIndex = 26;
-            this.btnHistoryCall.Text = "Lịch sử cuộc gọi";
-            this.btnHistoryCall.UseVisualStyleBackColor = false;
-            this.btnHistoryCall.Click += new System.EventHandler(this.btnHistoryCall_Click);
             // 
             // Form_CallManagement
             // 

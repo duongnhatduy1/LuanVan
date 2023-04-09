@@ -294,7 +294,7 @@ namespace MyFirstSoftPhone_02
             if (btn == null) return;
             lbl_NumberToDial.Text = "";
             lbl_NumberToDial.Focus();
-            Direct_Calling direct_Calling = new Direct_Calling(this);
+            //Direct_Calling direct_Calling = new Direct_Calling(this);
             //this.Visible = false;
             //this.Owner.Enabled = false;
 
@@ -324,10 +324,22 @@ namespace MyFirstSoftPhone_02
                 return;
             }
 
-            call = softPhone.CreateCallObject(phoneLine, lbl_NumberToDial.Text);
+            string callee = "";
+            if ((sender as Button).Name.Substring(0, 4) == "call")
+                callee = (sender as Button).Name.Substring(4, (sender as Button).Name.Length - 4);
+            else
+                callee = lbl_NumberToDial.Text;
+
+            call = softPhone.CreateCallObject(phoneLine, callee);
             WireUpCallEvents();
             ConnectMedia();
             call.Start();
+            
+            direct_Calling = new Direct_Calling(this);
+            direct_Calling.lbl_CallerName.Text = callee;
+            direct_Calling.ShowDialog();
+                
+            
         }
 
         public void btn_HangUp_Click(object sender, EventArgs e)
@@ -414,9 +426,9 @@ namespace MyFirstSoftPhone_02
                 //button info
                 i++;
                 var nguoidung = new System.Windows.Forms.Button();
-                nguoidung.Location = new System.Drawing.Point(170, -30 + 40 * i);
+                nguoidung.Location = new System.Drawing.Point(160, -30 + 40 * i);
                 nguoidung.Name = "info" + u.username;
-                nguoidung.Size = new System.Drawing.Size(25, 25);
+                nguoidung.Size = new System.Drawing.Size(37, 35);
                 nguoidung.TabIndex = 1;
                 nguoidung.UseVisualStyleBackColor = true;
                 nguoidung.Image = global::MyFirstSoftPhone_02.Properties.Resources.info;
@@ -429,7 +441,7 @@ namespace MyFirstSoftPhone_02
                 panel_online.Controls.Add(label);
                 label.AutoSize = true;
                 label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                label.Location = new System.Drawing.Point(5, -30 + 40 * i);
+                label.Location = new System.Drawing.Point(5, -22 + 40 * i);
                 label.Name = "lblUsername" + u.username;
                 label.Size = new System.Drawing.Size(75, 25);
                 label.TabIndex = 3;
@@ -439,13 +451,25 @@ namespace MyFirstSoftPhone_02
                 nguoidung = new System.Windows.Forms.Button();
                 nguoidung.Location = new System.Drawing.Point(200, -30 + 40 * i);
                 nguoidung.Name = label.Text;
-                nguoidung.Size = new System.Drawing.Size(33, 27);
+                nguoidung.Size = new System.Drawing.Size(37, 35);
                 nguoidung.TabIndex = 1;
                 nguoidung.UseVisualStyleBackColor = true;
                 nguoidung.Image = global::MyFirstSoftPhone_02.Properties.Resources.chat;
                 nguoidung.Cursor = System.Windows.Forms.Cursors.Hand;
                 panel_online.Controls.Add(nguoidung);
                 nguoidung.Click += new System.EventHandler(btnChat_Click_Online);
+
+                //button call
+                nguoidung = new System.Windows.Forms.Button();
+                nguoidung.Location = new System.Drawing.Point(240, -30 + 40 * i);
+                nguoidung.Name = "call"+label.Text;
+                nguoidung.Size = new System.Drawing.Size(37, 35);
+                nguoidung.TabIndex = 1;
+                nguoidung.UseVisualStyleBackColor = true;
+                nguoidung.Image = global::MyFirstSoftPhone_02.Properties.Resources.call;
+                nguoidung.Cursor = System.Windows.Forms.Cursors.Hand;
+                panel_online.Controls.Add(nguoidung);
+                nguoidung.Click += new System.EventHandler(btn_PickUp_Click);
             }
         }
 

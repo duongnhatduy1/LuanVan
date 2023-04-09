@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -41,7 +42,7 @@ namespace MyFirstSoftPhone_02.HistoryCalls
         'Caller_detail': {
             'id': 1,
             'username': 'tuhuuduc',
-            'email': 'mailto:tuhuuduc01@gmail.com.vn',
+            'email': 'tuhuuduc01@gmail.com.vn',
             'IP': '192.168.1.3',
             'Port': 64852,
             'Display_Name': 'Hữu Đức',
@@ -55,7 +56,7 @@ namespace MyFirstSoftPhone_02.HistoryCalls
         'Callee_detail': {
             'id': 2,
             'username': 'dnduy',
-            'email': 'mailto:dnduy@gmail.com.vn',
+            'email': 'dnduy@gmail.com.vn',
             'IP': '192.168.1.7',
             'Port': 57417,
             'Display_Name': 'Nhật Duy',
@@ -101,6 +102,7 @@ namespace MyFirstSoftPhone_02.HistoryCalls
                 panelHistory.Controls.Add(nguoidung);
                 _CallButtonListens.Add(nguoidung);
                 nguoidung.Click += new System.EventHandler(Listen_Click);
+                
 
                 //label Call-ID
                 var label = new System.Windows.Forms.Label();
@@ -149,8 +151,27 @@ namespace MyFirstSoftPhone_02.HistoryCalls
         private void Listen_Click(object sender, EventArgs e)
         {
             string url = (sender as Button).Name;
-            MessageBox.Show(url);
+            SoundPlayer Sound = new SoundPlayer(url);
 
+            if ((sender as Button).TabIndex == 3)
+            {
+                (sender as Button).Image = global::MyFirstSoftPhone_02.Properties.Resources.listen;
+                Sound.Stop();
+                (sender as Button).TabIndex = 1;
+                return;
+            }
+            var o = _CallButtonListens.Find(a => a.TabIndex == 3);
+            if (o != null )
+            {
+                o.TabIndex = 1;
+                o.Image = global::MyFirstSoftPhone_02.Properties.Resources.listen;
+            }
+           
+
+            (sender as Button).Image = global::MyFirstSoftPhone_02.Properties.Resources.nolisten;
+            (sender as Button).TabIndex = 3;
+            Sound.Play();
+            
         }
 
         private void btnExit_Click(object sender, EventArgs e)
