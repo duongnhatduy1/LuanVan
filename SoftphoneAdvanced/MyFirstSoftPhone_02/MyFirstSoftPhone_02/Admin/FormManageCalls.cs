@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Media;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +22,7 @@ namespace MyFirstSoftPhone_02.Admin
         List<Button> _CallButtonListens = new List<Button>();
         List<Button> _CallButtonInfos = new List<Button>();
         List<InfoCall> _InfoCalls = new List<InfoCall>();
+        SoundPlayer _Sound;
 
         string IdClick = "";
         string json = @"{ 'CallInfoLists' :
@@ -180,7 +183,7 @@ namespace MyFirstSoftPhone_02.Admin
                 //button listen
                 var nguoidung = new System.Windows.Forms.Button();
                 nguoidung.Location = new System.Drawing.Point(570, -45 + 50 * i);
-                nguoidung.Name = u.Content;
+                nguoidung.Name = u.Content + " " + u.Call_ID;
                 nguoidung.Size = new System.Drawing.Size(35, 35);
                 nguoidung.TabIndex = 1;
                 nguoidung.UseVisualStyleBackColor = true;
@@ -300,24 +303,42 @@ namespace MyFirstSoftPhone_02.Admin
 
         private void Listen_Click(object sender, EventArgs e)
         {
-            string url = (sender as Button).Name;
-            SoundPlayer Sound = new SoundPlayer(url);
-            //InfoCall data = JsonConvert.DeserializeObject<InfoCall>(json);
+            string temp = (sender as Button).Name;
+            int pos = temp.IndexOf(" ");
+            string url = temp.Substring(0, pos);
+            string fileName = temp.Substring(pos + 1, temp.Length - pos - 1);
+            fileName = "../../sound/" + fileName + ".wav";
+
+            if (!File.Exists(fileName))
+                using (WebClient client = new WebClient())
+                {
+                    client.DownloadFile(url, fileName);
+                }
+
+            if (_Sound != null) _Sound.Stop();
+
             if ((sender as Button).TabIndex == 3)
             {
                 (sender as Button).Image = global::MyFirstSoftPhone_02.Properties.Resources.listen;
-                Sound.Stop();
+                if (_Sound != null) _Sound.Stop();
                 (sender as Button).TabIndex = 1;
                 return;
             }
-            foreach (var u in _CallButtonListens.ToArray())
+            var o = _CallButtonListens.Find(a => a.TabIndex == 3);
+            if (o != null)
             {
-                u.TabIndex = 1;
-                u.Image = global::MyFirstSoftPhone_02.Properties.Resources.listen;
+                o.TabIndex = 1;
+                o.Image = global::MyFirstSoftPhone_02.Properties.Resources.listen;
             }
-            (sender as Button).TabIndex = 3;
+
+
             (sender as Button).Image = global::MyFirstSoftPhone_02.Properties.Resources.nolisten;
-            Sound.Play();
+            (sender as Button).TabIndex = 3;
+            using (_Sound = new SoundPlayer(fileName))
+            {
+                _Sound.Play();
+            }
+            
         }
         private void Info_Click(object sender, EventArgs e)
         {
