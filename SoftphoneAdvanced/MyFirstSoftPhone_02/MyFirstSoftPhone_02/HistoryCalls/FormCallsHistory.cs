@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -186,7 +187,7 @@ namespace MyFirstSoftPhone_02.HistoryCalls
                 //button listen
                 var nguoidung = new System.Windows.Forms.Button();
                 nguoidung.Location = new System.Drawing.Point(400, -57 + 100 * i);
-                nguoidung.Name = u.Content;
+                nguoidung.Name = u.Content + " " + u.Call_ID;
                 nguoidung.Size = new System.Drawing.Size(35, 35);
                 nguoidung.TabIndex = 1;
                 nguoidung.UseVisualStyleBackColor = true;
@@ -241,11 +242,20 @@ namespace MyFirstSoftPhone_02.HistoryCalls
             }
         }
 
-        
-        
         private void Listen_Click(object sender, EventArgs e)
         {
-            string url = (sender as Button).Name.Trim();
+            string temp = (sender as Button).Name;
+            int pos = temp.IndexOf(" ");
+            string url = temp.Substring(0, pos);
+            string fileName = temp.Substring(pos + 1, temp.Length - pos - 1);
+            fileName = "../../sound/" + fileName + ".wav";
+
+            if (!File.Exists(fileName))
+                using (WebClient client = new WebClient()) { 
+                client.DownloadFile(url, fileName);
+            }
+
+            if (_Sound != null) _Sound.Stop();
 
             if ((sender as Button).TabIndex == 3)
             {
@@ -264,7 +274,7 @@ namespace MyFirstSoftPhone_02.HistoryCalls
 
             (sender as Button).Image = global::MyFirstSoftPhone_02.Properties.Resources.nolisten;
             (sender as Button).TabIndex = 3;
-            using (_Sound = new SoundPlayer(url))
+            using (_Sound = new SoundPlayer(fileName))
             {
                 _Sound.Play();
             }
