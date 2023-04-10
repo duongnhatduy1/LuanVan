@@ -22,7 +22,8 @@ namespace MyFirstSoftPhone_02.Admin
         List<InfoCall> _InfoCalls = new List<InfoCall>();
 
         string IdClick = "";
-        string json = @"{
+        string json = @"{ 'CallInfoLists' :
+        [ {
         'Call_ID': 'afdsklfkdsfhk',
         'Caller_Username': 'tuhuuduc',
         'Callee_Username': 'dnduy',
@@ -32,7 +33,7 @@ namespace MyFirstSoftPhone_02.Admin
         'Caller_detail': {
             'id': 1,
             'username': 'tuhuuduc',
-            'email': 'mailto:tuhuuduc01@gmail.com.vn',
+            'email': 'tuhuuduc01@gmail.com.vn',
             'IP': '192.168.1.3',
             'Port': 64852,
             'Display_Name': 'Hữu Đức',
@@ -46,7 +47,7 @@ namespace MyFirstSoftPhone_02.Admin
         'Callee_detail': {
             'id': 2,
             'username': 'dnduy',
-            'email': 'mailto:dnduy@gmail.com.vn',
+            'email': 'dnduy@gmail.com.vn',
             'IP': '192.168.1.7',
             'Port': 57417,
             'Display_Name': 'Nhật Duy',
@@ -67,15 +68,106 @@ namespace MyFirstSoftPhone_02.Admin
                 'Sdp_Port': 8080
             }
        
-    }";
+    },
+    {
+        'Call_ID': '12345678910',
+        'Caller_Username': '12345678910',
+        'Callee_Username': '12345678910',
+        'Time_Start': '2023-03-22 09:04:01',
+        'Time_End': '2023-03-22 09:04:55',
+        'Content': 'https://drive.google.com/uc?export=view&id=1T5sKSx8_bomCAfT_TXryqjeZoUj3jycG',
+        'Caller_detail': {
+            'id': 1,
+            'username': '12345678910',
+            'email': 'tuhuuduc01@gmail.com.vn',
+            'IP': '192.168.1.3',
+            'Port': 64852,
+            'Display_Name': 'Hữu Đức',
+            'Role_ID': 'ad',
+            'Department_ID': 'Dev',
+            'created_at': '2023-03-20 23:17:51',
+            'updated_at': '2023-03-20 23:17:51',
+            'Department_Name': 'Developer',
+            'Role_Name': 'Admin'
+        },
+        'Callee_detail': {
+            'id': 2,
+            'username': '12345678910',
+            'email': 'dnduy@gmail.com.vn',
+            'IP': '192.168.1.7',
+            'Port': 57417,
+            'Display_Name': 'Nhật Duy',
+            'Role_ID': 'user',
+            'Department_ID': 'QA',
+            'created_at': '2023-03-20 23:17:51',
+            'updated_at': '2023-03-20 23:17:51',
+            'Department_Name': 'Quality Assurance',
+            'Role_Name': 'user'
+        },
+        'Call_Detail':
+            {
+                'Call_ID': '12345678910',
+                'Source_IP': '192.168.1.7',
+                'Source_Port': 64049,
+                'Destination_IP': '192.168.1.7',
+                'Destination_Port': 57417,
+                'Sdp_Port': 8080
+            }
+       
+    },
+    {
+        'Call_ID': 'abcdefgh',
+        'Caller_Username': 'abcdefgh',
+        'Callee_Username': 'abcdefgh',
+        'Time_Start': '2023-03-22 09:04:01',
+        'Time_End': '2023-03-22 09:04:55',
+        'Content': 'https://drive.google.com/uc?export=view&id=1ILYHY0BWAmarparZwjwfkDKh2Y4wTgfy',
+        'Caller_detail': {
+            'id': 1,
+            'username': 'abcdefgh',
+            'email': 'tuhuuduc01@gmail.com.vn',
+            'IP': '192.168.1.3',
+            'Port': 64852,
+            'Display_Name': 'Hữu Đức',
+            'Role_ID': 'ad',
+            'Department_ID': 'Dev',
+            'created_at': '2023-03-20 23:17:51',
+            'updated_at': '2023-03-20 23:17:51',
+            'Department_Name': 'Developer',
+            'Role_Name': 'Admin'
+        },
+        'Callee_detail': {
+            'id': 2,
+            'username': 'abcdefgh',
+            'email': 'dnduy@gmail.com.vn',
+            'IP': '192.168.1.7',
+            'Port': 57417,
+            'Display_Name': 'Nhật Duy',
+            'Role_ID': 'user',
+            'Department_ID': 'QA',
+            'created_at': '2023-03-20 23:17:51',
+            'updated_at': '2023-03-20 23:17:51',
+            'Department_Name': 'Quality Assurance',
+            'Role_Name': 'user'
+        },
+        'Call_Detail':
+            {
+                'Call_ID': 'abcdefgh',
+                'Source_IP': '192.168.1.7',
+                'Source_Port': 64049,
+                'Destination_IP': '192.168.1.7',
+                'Destination_Port': 57417,
+                'Sdp_Port': 8080
+            }
+       
+    }]}";
 
         public FormManageCalls()
         {
             InitializeComponent();
-            InfoCall data = JsonConvert.DeserializeObject<InfoCall>(json);
-            _InfoCalls.Add(data);
+            var data = JsonConvert.DeserializeObject<CallInfoList>(json);
+            _InfoCalls = data.CallInfoLists;
             InitCalls();
-
         }
 
 
@@ -237,7 +329,7 @@ namespace MyFirstSoftPhone_02.Admin
                           $"Cuộc gọi bắt đầu lúc : {u.Time_Start}\n\n" +
                           $"Cuộc gọi kết thúc lúc: {u.Time_End}\n";
 
-            MessageBox.Show(info);
+            MessageBox.Show(info, "Thông tin cuộc gọi", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

@@ -239,7 +239,6 @@ namespace MyFirstSoftPhone_02.Admin
             string username = (sender as Button).Name.Substring(4, (sender as Button).Name.Length - 4);
             var u = _UserOnlines.SingleOrDefault(p => p.username == username);
             string info =
-                "======Thông Tin người dùng=====\n\n" +
                  $"ID: {u.id}\n\n" +
                  $"Username: {u.username}\n\n" +
                  $"Tên hiển thị: {u.Display_Name}\n\n" +
@@ -248,7 +247,8 @@ namespace MyFirstSoftPhone_02.Admin
                  $"Địa chỉ IP: {u.IP}\n\n" +
                  $"Thời gian tạo: {u.created_at}\n\n" +
                  $"Thời gian cập nhật: {u.updated_at}\n";
-            MessageBox.Show(info);
+            MessageBox.Show(info, "Thông tin người dùng", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }

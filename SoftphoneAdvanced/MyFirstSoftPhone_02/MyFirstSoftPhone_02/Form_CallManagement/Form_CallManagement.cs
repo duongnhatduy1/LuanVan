@@ -506,7 +506,7 @@ namespace MyFirstSoftPhone_02
 
 
             //IdClick = (sender as Button).Name.Substring(4, (sender as Button).Name.Length - 4);
-            MessageBox.Show(info);
+            MessageBox.Show(info, "Thông tin người dùng", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button1_Click(object sender, EventArgs e)
