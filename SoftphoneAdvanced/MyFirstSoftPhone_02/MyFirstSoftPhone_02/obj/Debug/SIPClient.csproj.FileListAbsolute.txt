@@ -40,3 +40,8 @@ E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirs
 E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Admin.AddUser.resources
 E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Admin.FormChangePassword.resources
 E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.HistoryCalls.FormCallsHistory.resources
+E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\System.Net.Http.dll
+E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\System.Security.Cryptography.Algorithms.dll
+E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\System.Security.Cryptography.Encoding.dll
+E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\System.Security.Cryptography.Primitives.dll
+E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\System.Security.Cryptography.X509Certificates.dll

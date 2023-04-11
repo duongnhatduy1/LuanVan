@@ -37,9 +37,9 @@ namespace MyFirstSoftPhone_02
         public event EventHandler<InstantMessage> IncomingMessage;
         private bool inComingCall;
         public string Receiver;
-        public Form_CallManagement(UserInfo u)
+        public Form_CallManagement(User u)
         {
-            userInfo = u;
+            _me = u;
             InitializeComponent();
             InitUseronline();
         }
@@ -419,7 +419,6 @@ namespace MyFirstSoftPhone_02
 
             var data = JsonConvert.DeserializeObject<UserList>(json);
             _UserOnlines = data.Users;
-            _me = _UserOnlines[0];
             int i = 0;
             foreach (var u in _UserOnlines)
             {

@@ -1,6 +1,7 @@
 ﻿using MyFirstSoftPhone_02.Admin;
 using MyFirstSoftPhone_02.Handle_Message;
 using MyFirstSoftPhone_02.Pattern;
+using Newtonsoft.Json;
 using odm.core;
 using Ozeki.VoIP;
 using System;
@@ -9,6 +10,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +21,8 @@ namespace MyFirstSoftPhone_02
     public partial class Login : Form
     {
         public static UserInfo userInfo;
+        public User _me;
+        string userName, password, serverIP;
         public Login()
         {
             InitializeComponent();
@@ -32,13 +37,57 @@ namespace MyFirstSoftPhone_02
             return true;
         }
 
-        private void btn_Login_Click(object sender, EventArgs e)
+
+        async System.Threading.Tasks.Task RunAsync()
         {
-            String userName = tb_Username.Text.Trim();
-            String password = tb_Password.Text.Trim();
-            String serverIP = tb_ServerIP.Text.Trim();
-            UserInfo userInfo = new UserInfo(userName, password, serverIP);
-            if (userName == "admin")
+            userName = tb_Username.Text.Trim();
+            password = tb_Password.Text.Trim();
+            serverIP = tb_ServerIP.Text.Trim();
+            //Pattern.Login login = new Pattern.Login(userName, password);
+            //string json = JsonConvert.SerializeObject(login);
+            var parameters = new Dictionary<string, string>();
+            parameters["username"] = userName;
+            parameters["password"] = password;
+            Pattern.Login login = new Pattern.Login(userName, password);
+            using (var client = new HttpClient())
+            {
+                // Gắn header
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("X-MyHeader", "hello world");
+                
+                // Gọi API
+                var response = client.PostAsync("http://192.168.1.211/api/login", new FormUrlEncodedContent(parameters)).Result;
+
+
+                // Đọc dữ liệu trả về
+                string resultContent = response.Content.ReadAsStringAsync().Result;
+                UserRespone m = JsonConvert.DeserializeObject<UserRespone>(resultContent);
+                _me = m.user;
+                
+                Global.success = m.success;
+                if (Global.success)
+                {
+                    Global.token = m.token;
+                    Global.role = m.user.Role_Name;
+                }
+            }
+        }
+        private void  btn_Login_Click(object sender, EventArgs e)
+        {
+            
+
+            
+            RunAsync().Wait();
+
+            if (!Global.success)
+            {
+                MessageBox.Show("Invalid user name or password or server IP", "UnAuthorized",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            };
+            //UserInfo userInfo = new UserInfo(userName, password, serverIP);
+            if (Global.role == "Admin")
             {
                 this.Hide();    //Hide the Old Form
                 FormMainAdmin formMainAdmin = new FormMainAdmin();
@@ -46,18 +95,14 @@ namespace MyFirstSoftPhone_02
                 this.Close();    //Close the Old Form
             }
             else
-            if (CheckLogin(userInfo))
+            if (Global.role == "user")
             {
                 this.Hide();    //Hide the Old Form
-                Form_CallManagement form_CallManagement = new Form_CallManagement(userInfo);
+                Form_CallManagement form_CallManagement = new Form_CallManagement(_me);
                 form_CallManagement.ShowDialog();    //Show the New Form
                 this.Close();    //Close the Old Form
             }
-            else
-            {
-                MessageBox.Show("Invalid user name or password or server IP", "UnAuthorized",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-            };
+            
         }
 
         private void btn_Registry_Click(object sender, EventArgs e)
