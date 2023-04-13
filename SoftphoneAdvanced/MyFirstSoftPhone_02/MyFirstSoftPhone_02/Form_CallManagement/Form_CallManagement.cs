@@ -88,7 +88,7 @@ namespace MyFirstSoftPhone_02
             content.Append("\n");
             if (formMessage == null)
             {
-                formMessage = new FormMessage(this);
+                formMessage = new FormMessage(this, Receiver);
                 formMessage.lblMessageInfo.Text = Receiver;
                 InvokeGUIThread(() => { formMessage.lblMessage.Items.Add(content.ToString()); });
                 InvokeGUIThread(() => { formMessage.ShowDialog(); });
@@ -476,10 +476,11 @@ namespace MyFirstSoftPhone_02
         {
             if (formMessage == null)
             {
-                formMessage = new FormMessage(this);
                 Receiver = tbInputToChat.Text.Trim();
+                formMessage = new FormMessage(this, tbInputToChat.Text);
                 formMessage.lblMessageInfo.Text = tbInputToChat.Text;
-                InvokeGUIThread(() => { formMessage.ShowDialog(); });
+                //InvokeGUIThread(() => { formMessage.ShowDialog(); });
+                formMessage.ShowDialog();
             }
         }
 
@@ -487,7 +488,7 @@ namespace MyFirstSoftPhone_02
         {
             if (formMessage == null)
             {
-                formMessage = new FormMessage(this);
+                formMessage = new FormMessage(this, (sender as Button).Name);
                 Receiver = (sender as Button).Name;
                 formMessage.lblMessageInfo.Text = (sender as Button).Name;
                 InvokeGUIThread(() => { formMessage.ShowDialog(); });
