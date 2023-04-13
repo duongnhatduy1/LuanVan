@@ -20,7 +20,7 @@ namespace MyFirstSoftPhone_02
         List<Button> _ButtonsChat = new List<Button>();
         List<Button> _UserOnlineInfos = new List<Button>();
         List<User> _UserOnlines = new List<User>();
-        User _me;
+        public User _me;
         private UserInfo userInfo;
         private ISoftPhone softPhone;
         private IPhoneLine phoneLine;

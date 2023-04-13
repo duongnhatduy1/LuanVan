@@ -9,6 +9,8 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,151 +27,172 @@ namespace MyFirstSoftPhone_02.Admin
         SoundPlayer _Sound;
 
         string IdClick = "";
-        string json = @"{ 'CallInfoLists' :
-        [ {
-        'Call_ID': 'afdsklfkdsfhk',
-        'Caller_Username': 'tuhuuduc',
-        'Callee_Username': 'dnduy',
-        'Time_Start': '2023-03-22 09:04:01',
-        'Time_End': '2023-03-22 09:04:55',
-        'Content': 'https://drive.google.com/uc?export=view&id=11C5HuWQkQ_jU7k6_uWNRC5c0PlanpS8p',
-        'Caller_detail': {
-            'id': 1,
-            'username': 'tuhuuduc',
-            'email': 'tuhuuduc01@gmail.com.vn',
-            'IP': '192.168.1.3',
-            'Port': 64852,
-            'Display_Name': 'Hữu Đức',
-            'Role_ID': 'ad',
-            'Department_ID': 'Dev',
-            'created_at': '2023-03-20 23:17:51',
-            'updated_at': '2023-03-20 23:17:51',
-            'Department_Name': 'Developer',
-            'Role_Name': 'Admin'
-        },
-        'Callee_detail': {
-            'id': 2,
-            'username': 'dnduy',
-            'email': 'dnduy@gmail.com.vn',
-            'IP': '192.168.1.7',
-            'Port': 57417,
-            'Display_Name': 'Nhật Duy',
-            'Role_ID': 'user',
-            'Department_ID': 'QA',
-            'created_at': '2023-03-20 23:17:51',
-            'updated_at': '2023-03-20 23:17:51',
-            'Department_Name': 'Quality Assurance',
-            'Role_Name': 'user'
-        },
-        'Call_Detail':
+        //    string json = @"{ 'CallInfoLists' :
+        //    [ {
+        //    'Call_ID': 'afdsklfkdsfhk',
+        //    'Caller_Username': 'tuhuuduc',
+        //    'Callee_Username': 'dnduy',
+        //    'Time_Start': '2023-03-22 09:04:01',
+        //    'Time_End': '2023-03-22 09:04:55',
+        //    'Content': 'https://drive.google.com/uc?export=view&id=11C5HuWQkQ_jU7k6_uWNRC5c0PlanpS8p',
+        //    'Caller_detail': {
+        //        'id': 1,
+        //        'username': 'tuhuuduc',
+        //        'email': 'tuhuuduc01@gmail.com.vn',
+        //        'IP': '192.168.1.3',
+        //        'Port': 64852,
+        //        'Display_Name': 'Hữu Đức',
+        //        'Role_ID': 'ad',
+        //        'Department_ID': 'Dev',
+        //        'created_at': '2023-03-20 23:17:51',
+        //        'updated_at': '2023-03-20 23:17:51',
+        //        'Department_Name': 'Developer',
+        //        'Role_Name': 'Admin'
+        //    },
+        //    'Callee_detail': {
+        //        'id': 2,
+        //        'username': 'dnduy',
+        //        'email': 'dnduy@gmail.com.vn',
+        //        'IP': '192.168.1.7',
+        //        'Port': 57417,
+        //        'Display_Name': 'Nhật Duy',
+        //        'Role_ID': 'user',
+        //        'Department_ID': 'QA',
+        //        'created_at': '2023-03-20 23:17:51',
+        //        'updated_at': '2023-03-20 23:17:51',
+        //        'Department_Name': 'Quality Assurance',
+        //        'Role_Name': 'user'
+        //    },
+        //    'Call_Detail':
+        //        {
+        //            'Call_ID': 'afdsklfkdsfhk',
+        //            'Source_IP': '192.168.1.7',
+        //            'Source_Port': 64049,
+        //            'Destination_IP': '192.168.1.7',
+        //            'Destination_Port': 57417,
+        //            'Sdp_Port': 8080
+        //        }
+
+        //},
+        //{
+        //    'Call_ID': '12345678910',
+        //    'Caller_Username': '12345678910',
+        //    'Callee_Username': '12345678910',
+        //    'Time_Start': '2023-03-22 09:04:01',
+        //    'Time_End': '2023-03-22 09:04:55',
+        //    'Content': 'https://drive.google.com/uc?export=view&id=1T5sKSx8_bomCAfT_TXryqjeZoUj3jycG',
+        //    'Caller_detail': {
+        //        'id': 1,
+        //        'username': '12345678910',
+        //        'email': 'tuhuuduc01@gmail.com.vn',
+        //        'IP': '192.168.1.3',
+        //        'Port': 64852,
+        //        'Display_Name': 'Hữu Đức',
+        //        'Role_ID': 'ad',
+        //        'Department_ID': 'Dev',
+        //        'created_at': '2023-03-20 23:17:51',
+        //        'updated_at': '2023-03-20 23:17:51',
+        //        'Department_Name': 'Developer',
+        //        'Role_Name': 'Admin'
+        //    },
+        //    'Callee_detail': {
+        //        'id': 2,
+        //        'username': '12345678910',
+        //        'email': 'dnduy@gmail.com.vn',
+        //        'IP': '192.168.1.7',
+        //        'Port': 57417,
+        //        'Display_Name': 'Nhật Duy',
+        //        'Role_ID': 'user',
+        //        'Department_ID': 'QA',
+        //        'created_at': '2023-03-20 23:17:51',
+        //        'updated_at': '2023-03-20 23:17:51',
+        //        'Department_Name': 'Quality Assurance',
+        //        'Role_Name': 'user'
+        //    },
+        //    'Call_Detail':
+        //        {
+        //            'Call_ID': '12345678910',
+        //            'Source_IP': '192.168.1.7',
+        //            'Source_Port': 64049,
+        //            'Destination_IP': '192.168.1.7',
+        //            'Destination_Port': 57417,
+        //            'Sdp_Port': 8080
+        //        }
+
+        //},
+        //{
+        //    'Call_ID': 'abcdefgh',
+        //    'Caller_Username': 'abcdefgh',
+        //    'Callee_Username': 'abcdefgh',
+        //    'Time_Start': '2023-03-22 09:04:01',
+        //    'Time_End': '2023-03-22 09:04:55',
+        //    'Content': 'https://drive.google.com/uc?export=view&id=1ILYHY0BWAmarparZwjwfkDKh2Y4wTgfy',
+        //    'Caller_detail': {
+        //        'id': 1,
+        //        'username': 'abcdefgh',
+        //        'email': 'tuhuuduc01@gmail.com.vn',
+        //        'IP': '192.168.1.3',
+        //        'Port': 64852,
+        //        'Display_Name': 'Hữu Đức',
+        //        'Role_ID': 'ad',
+        //        'Department_ID': 'Dev',
+        //        'created_at': '2023-03-20 23:17:51',
+        //        'updated_at': '2023-03-20 23:17:51',
+        //        'Department_Name': 'Developer',
+        //        'Role_Name': 'Admin'
+        //    },
+        //    'Callee_detail': {
+        //        'id': 2,
+        //        'username': 'abcdefgh',
+        //        'email': 'dnduy@gmail.com.vn',
+        //        'IP': '192.168.1.7',
+        //        'Port': 57417,
+        //        'Display_Name': 'Nhật Duy',
+        //        'Role_ID': 'user',
+        //        'Department_ID': 'QA',
+        //        'created_at': '2023-03-20 23:17:51',
+        //        'updated_at': '2023-03-20 23:17:51',
+        //        'Department_Name': 'Quality Assurance',
+        //        'Role_Name': 'user'
+        //    },
+        //    'Call_Detail':
+        //        {
+        //            'Call_ID': 'abcdefgh',
+        //            'Source_IP': '192.168.1.7',
+        //            'Source_Port': 64049,
+        //            'Destination_IP': '192.168.1.7',
+        //            'Destination_Port': 57417,
+        //            'Sdp_Port': 8080
+        //        }
+
+        //}]}";
+
+        async System.Threading.Tasks.Task RunAsyncGetSession()
+        {
+
+            using (var client = new HttpClient())
             {
-                'Call_ID': 'afdsklfkdsfhk',
-                'Source_IP': '192.168.1.7',
-                'Source_Port': 64049,
-                'Destination_IP': '192.168.1.7',
-                'Destination_Port': 57417,
-                'Sdp_Port': 8080
+                // Gắn header
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("token", Global.token);
+
+                // Gọi API
+                var response = client.GetAsync("http://192.168.1.211/api/admin/session").Result;
+
+
+                // Đọc dữ liệu trả về
+                string resultContent = response.Content.ReadAsStringAsync().Result;
+                var data = JsonConvert.DeserializeObject<CallInfoList>(resultContent);
+                _InfoCalls = data.CallInfoLists;
             }
-       
-    },
-    {
-        'Call_ID': '12345678910',
-        'Caller_Username': '12345678910',
-        'Callee_Username': '12345678910',
-        'Time_Start': '2023-03-22 09:04:01',
-        'Time_End': '2023-03-22 09:04:55',
-        'Content': 'https://drive.google.com/uc?export=view&id=1T5sKSx8_bomCAfT_TXryqjeZoUj3jycG',
-        'Caller_detail': {
-            'id': 1,
-            'username': '12345678910',
-            'email': 'tuhuuduc01@gmail.com.vn',
-            'IP': '192.168.1.3',
-            'Port': 64852,
-            'Display_Name': 'Hữu Đức',
-            'Role_ID': 'ad',
-            'Department_ID': 'Dev',
-            'created_at': '2023-03-20 23:17:51',
-            'updated_at': '2023-03-20 23:17:51',
-            'Department_Name': 'Developer',
-            'Role_Name': 'Admin'
-        },
-        'Callee_detail': {
-            'id': 2,
-            'username': '12345678910',
-            'email': 'dnduy@gmail.com.vn',
-            'IP': '192.168.1.7',
-            'Port': 57417,
-            'Display_Name': 'Nhật Duy',
-            'Role_ID': 'user',
-            'Department_ID': 'QA',
-            'created_at': '2023-03-20 23:17:51',
-            'updated_at': '2023-03-20 23:17:51',
-            'Department_Name': 'Quality Assurance',
-            'Role_Name': 'user'
-        },
-        'Call_Detail':
-            {
-                'Call_ID': '12345678910',
-                'Source_IP': '192.168.1.7',
-                'Source_Port': 64049,
-                'Destination_IP': '192.168.1.7',
-                'Destination_Port': 57417,
-                'Sdp_Port': 8080
-            }
-       
-    },
-    {
-        'Call_ID': 'abcdefgh',
-        'Caller_Username': 'abcdefgh',
-        'Callee_Username': 'abcdefgh',
-        'Time_Start': '2023-03-22 09:04:01',
-        'Time_End': '2023-03-22 09:04:55',
-        'Content': 'https://drive.google.com/uc?export=view&id=1ILYHY0BWAmarparZwjwfkDKh2Y4wTgfy',
-        'Caller_detail': {
-            'id': 1,
-            'username': 'abcdefgh',
-            'email': 'tuhuuduc01@gmail.com.vn',
-            'IP': '192.168.1.3',
-            'Port': 64852,
-            'Display_Name': 'Hữu Đức',
-            'Role_ID': 'ad',
-            'Department_ID': 'Dev',
-            'created_at': '2023-03-20 23:17:51',
-            'updated_at': '2023-03-20 23:17:51',
-            'Department_Name': 'Developer',
-            'Role_Name': 'Admin'
-        },
-        'Callee_detail': {
-            'id': 2,
-            'username': 'abcdefgh',
-            'email': 'dnduy@gmail.com.vn',
-            'IP': '192.168.1.7',
-            'Port': 57417,
-            'Display_Name': 'Nhật Duy',
-            'Role_ID': 'user',
-            'Department_ID': 'QA',
-            'created_at': '2023-03-20 23:17:51',
-            'updated_at': '2023-03-20 23:17:51',
-            'Department_Name': 'Quality Assurance',
-            'Role_Name': 'user'
-        },
-        'Call_Detail':
-            {
-                'Call_ID': 'abcdefgh',
-                'Source_IP': '192.168.1.7',
-                'Source_Port': 64049,
-                'Destination_IP': '192.168.1.7',
-                'Destination_Port': 57417,
-                'Sdp_Port': 8080
-            }
-       
-    }]}";
+        }
 
         public FormManageCalls()
         {
             InitializeComponent();
-            var data = JsonConvert.DeserializeObject<CallInfoList>(json);
-            _InfoCalls = data.CallInfoLists;
+            RunAsyncGetSession().Wait();
+
             InitCalls();
         }
 

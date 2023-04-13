@@ -40,6 +40,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
             // 
             // btnSendMessage
             // 
+            this.btnSendMessage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSendMessage.Location = new System.Drawing.Point(695, 389);
             this.btnSendMessage.Name = "btnSendMessage";
             this.btnSendMessage.Size = new System.Drawing.Size(59, 42);
@@ -50,6 +51,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
             // 
             // tbMessage
             // 
+            this.tbMessage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.tbMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbMessage.Location = new System.Drawing.Point(21, 381);
             this.tbMessage.Multiline = true;
@@ -61,6 +63,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
             // 
             // btnSelectFile
             // 
+            this.btnSelectFile.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSelectFile.Location = new System.Drawing.Point(621, 389);
             this.btnSelectFile.Name = "btnSelectFile";
             this.btnSelectFile.Size = new System.Drawing.Size(59, 42);
@@ -70,6 +73,9 @@ namespace MyFirstSoftPhone_02.Handle_Message
             // 
             // lblMessage
             // 
+            this.lblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMessage.BackColor = System.Drawing.Color.White;
             this.lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));

@@ -143,11 +143,15 @@
     <Compile Include="Pattern\Call_Detail.cs" />
     <Compile Include="Pattern\Global.cs" />
     <Compile Include="Pattern\InfoCall.cs" />
+    <Compile Include="Pattern\ListMessage.cs" />
+    <Compile Include="Pattern\ListUserStatus.cs" />
     <Compile Include="Pattern\Login.cs" />
+    <Compile Include="Pattern\Message.cs" />
     <Compile Include="Pattern\User.cs" />
     <Compile Include="Pattern\UserInfo.cs" />
     <Compile Include="Pattern\UserList.cs" />
     <Compile Include="Pattern\UserRespone.cs" />
+    <Compile Include="Pattern\UserStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Admin\AddUser.resx">
