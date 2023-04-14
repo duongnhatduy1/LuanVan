@@ -145,5 +145,15 @@ namespace MyFirstSoftPhone_02.Admin
                 this.Dispose();
             }
         }
+
+        private void btbUpdateDepartment_Click(object sender, EventArgs e)
+        {
+            FormUpdateDepartment f = null;
+            if (f == null)
+            {
+                f = new FormUpdateDepartment(_departments);
+                f.ShowDialog();
+            }
+        }
     }
 }

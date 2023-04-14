@@ -103,6 +103,12 @@
     <Compile Include="Admin\FormManageUsers.Designer.cs">
       <DependentUpon>FormManageUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\FormUpdateDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormUpdateDepartment.Designer.cs">
+      <DependentUpon>FormUpdateDepartment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UpdateUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\FormManageUsers.resx">
       <DependentUpon>FormManageUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormUpdateDepartment.resx">
+      <DependentUpon>FormUpdateDepartment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\UpdateUser.resx">
       <DependentUpon>UpdateUser.cs</DependentUpon>

@@ -216,6 +216,7 @@ namespace MyFirstSoftPhone_02.Admin
             this.btbUpdateDepartment.Size = new System.Drawing.Size(26, 29);
             this.btbUpdateDepartment.TabIndex = 16;
             this.btbUpdateDepartment.UseVisualStyleBackColor = true;
+            this.btbUpdateDepartment.Click += new System.EventHandler(this.btbUpdateDepartment_Click);
             // 
             // AddUser
             // 

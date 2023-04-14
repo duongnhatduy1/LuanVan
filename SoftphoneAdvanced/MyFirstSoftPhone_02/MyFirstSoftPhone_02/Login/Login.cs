@@ -54,7 +54,6 @@ namespace MyFirstSoftPhone_02
                 // Gắn header
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                client.DefaultRequestHeaders.Add("X-MyHeader", "hello world");
                 
                 // Gọi API
                 var response = client.PostAsync("http://192.168.1.211/api/login", new FormUrlEncodedContent(parameters)).Result;

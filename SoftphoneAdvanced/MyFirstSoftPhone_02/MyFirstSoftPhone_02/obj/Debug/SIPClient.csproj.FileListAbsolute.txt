@@ -45,3 +45,4 @@ E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirs
 E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\System.Security.Cryptography.Encoding.dll
 E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\System.Security.Cryptography.Primitives.dll
 E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+E:\duy\LuanVan\code\codeDuy\LuanVan\SoftphoneAdvanced\MyFirstSoftPhone_02\MyFirstSoftPhone_02\obj\Debug\MyFirstSoftPhone_02.Admin.FormUpdateDepartment.resources
