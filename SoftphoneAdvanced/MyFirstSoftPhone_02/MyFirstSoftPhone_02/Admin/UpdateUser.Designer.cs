@@ -74,9 +74,9 @@ namespace MyFirstSoftPhone_02.Admin
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(49, 170);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 25);
+            this.label3.Size = new System.Drawing.Size(144, 25);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Mã bộ phận";
+            this.label3.Text = "Tên bộ phận";
             // 
             // label4
             // 

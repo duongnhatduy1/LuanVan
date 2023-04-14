@@ -141,8 +141,10 @@
     </Compile>
     <Compile Include="Pattern\CallInfoList.cs" />
     <Compile Include="Pattern\Call_Detail.cs" />
+    <Compile Include="Pattern\Department.cs" />
     <Compile Include="Pattern\Global.cs" />
     <Compile Include="Pattern\InfoCall.cs" />
+    <Compile Include="Pattern\ListDepartment.cs" />
     <Compile Include="Pattern\ListMessage.cs" />
     <Compile Include="Pattern\ListUserStatus.cs" />
     <Compile Include="Pattern\Login.cs" />

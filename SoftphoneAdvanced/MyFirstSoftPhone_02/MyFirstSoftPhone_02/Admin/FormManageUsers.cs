@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +24,27 @@ namespace MyFirstSoftPhone_02.Admin
 
         string IdClick = "";
 
+        async System.Threading.Tasks.Task RunAsyncGetUserByAdmin()
+        {
+
+            using (var client = new HttpClient())
+            {
+                // Gắn header
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("token", Global.token);
+
+                // Gọi API
+                var response = client.GetAsync($"http://192.168.1.211/api/admin/account").Result;
+
+                // Đọc dữ liệu trả về
+                string resultContent = response.Content.ReadAsStringAsync().Result;
+                resultContent = "{\"Users\": " + resultContent + "}";
+                var data = JsonConvert.DeserializeObject<UserList>(resultContent);
+                _UserOnlines = data.Users;
+            }
+        }
+
         public FormManageUsers()
         {
             InitializeComponent();
@@ -31,68 +54,7 @@ namespace MyFirstSoftPhone_02.Admin
 
         public void InitUsers()
         {
-            string json = @"{
-         'Users': [
-            {
-            'id': 1,
-            'username': 'tuhuuduc',
-            'email': 'tuhuuduc01@gmail.com.vn',
-            'IP': '192.168.1.3',
-            'Port': 64852,
-            'Display_Name': 'Hữu Đức',
-            'Role_ID': 'ad',
-            'Department_ID': 'Dev',
-            'created_at': '2023-03-20 23:17:51',
-            'updated_at': '2023-03-20 23:17:51',
-            'Department_Name': 'Developer',
-            'Role_Name': 'Admin'
-            },
-            {
-            'id': 2,
-            'username': 'dnduy',
-            'email': 'dnduy@gmail.com.vn',
-            'IP': '192.168.1.7',
-            'Port': 57417,
-            'Display_Name': 'Nhật Duy',
-            'Role_ID': 'user',
-            'Department_ID': 'QA',
-            'created_at': '2023-03-20 23:17:51',
-            'updated_at': '2023-03-20 23:17:51',
-            'Department_Name': 'Quality Assurance',
-            'Role_Name': 'user'
-            },
-{
-            'id': 3,
-            'username': 'dntruong',
-            'email': 'dntruong@gmail.com.vn',
-            'IP': '192.168.1.8',
-            'Port': 57417,
-            'Display_Name': 'Nhật Trường',
-            'Role_ID': 'user',
-            'Department_ID': 'IT',
-            'created_at': '2023-03-21 23:17:51',
-            'updated_at': '2023-03-21 23:17:51',
-            'Department_Name': 'IT support',
-            'Role_Name': 'user'
-            },
-{
-            'id': 4,
-            'username': 'vhtram',
-            'email': 'vhtram@gmail.com.vn',
-            'IP': '192.168.1.7',
-            'Port': 57417,
-            'Display_Name': 'Võ Huỳnh Trâm',
-            'Role_ID': 'user',
-            'Department_ID': 'PM',
-            'created_at': '2023-03-23 23:17:51',
-            'updated_at': '2023-03-23 23:17:51',
-            'Department_Name': 'Project Manager',
-            'Role_Name': 'user'
-            }
-            ]}";
-
-            var data = JsonConvert.DeserializeObject<UserList>(json);
-            _UserOnlines = data.Users;
+            RunAsyncGetUserByAdmin().Wait();
             int i = 0;
             foreach (var u in _UserOnlines)
             {
@@ -244,9 +206,8 @@ namespace MyFirstSoftPhone_02.Admin
                  $"Tên hiển thị: {u.Display_Name}\n\n" +
                  $"Bộ phận: {u.Department_Name}\n\n" +
                  $"Email: {u.email}\n\n" +
-                 $"Địa chỉ IP: {u.IP}\n\n" +
-                 $"Thời gian tạo: {u.created_at}\n\n" +
-                 $"Thời gian cập nhật: {u.updated_at}\n";
+                 $"Địa chỉ IP: {u.IP}\n\n";
+                
             MessageBox.Show(info, "Thông tin người dùng", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }

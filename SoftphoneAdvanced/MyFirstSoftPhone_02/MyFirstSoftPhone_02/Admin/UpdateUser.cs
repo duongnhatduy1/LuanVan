@@ -25,7 +25,7 @@ namespace MyFirstSoftPhone_02.Admin
         {
             tbUsername.Text = _user.username;
             tbDisplayname.Text = _user.Display_Name;
-            tbDepartment.Text = _user.Department_ID;
+            tbDepartment.Text = _user.Department_Name;
             tbEmail.Text = _user.email;
         }
 

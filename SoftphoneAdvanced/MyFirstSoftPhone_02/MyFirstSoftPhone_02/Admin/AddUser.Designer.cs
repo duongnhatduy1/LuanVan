@@ -44,6 +44,7 @@ namespace MyFirstSoftPhone_02.Admin
             this.btnExit = new System.Windows.Forms.Button();
             this.tbDisplayName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btbUpdateDepartment = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -149,21 +150,10 @@ namespace MyFirstSoftPhone_02.Admin
             // cbxDepartment
             // 
             this.cbxDepartment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxDepartment.CausesValidation = false;
             this.cbxDepartment.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxDepartment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.cbxDepartment.FormattingEnabled = true;
-            this.cbxDepartment.Items.AddRange(new object[] {
-            "Kế toán",
-            "Lễ Tân",
-            "Quản lý",
-            "Văn thư",
-            "Đào tào",
-            "Tài chính",
-            "Nghiên cứu",
-            "Kế hoạch đầu tư",
-            "Kế hoạch tổng hợp",
-            "Hỗ trợ khởi nghiệp",
-            "Khác"});
             this.cbxDepartment.Location = new System.Drawing.Point(279, 203);
             this.cbxDepartment.Name = "cbxDepartment";
             this.cbxDepartment.Size = new System.Drawing.Size(327, 33);
@@ -218,11 +208,21 @@ namespace MyFirstSoftPhone_02.Admin
             this.label6.TabIndex = 14;
             this.label6.Text = "Tên hiển thị";
             // 
+            // btbUpdateDepartment
+            // 
+            this.btbUpdateDepartment.Image = global::MyFirstSoftPhone_02.Properties.Resources.update1;
+            this.btbUpdateDepartment.Location = new System.Drawing.Point(200, 204);
+            this.btbUpdateDepartment.Name = "btbUpdateDepartment";
+            this.btbUpdateDepartment.Size = new System.Drawing.Size(26, 29);
+            this.btbUpdateDepartment.TabIndex = 16;
+            this.btbUpdateDepartment.UseVisualStyleBackColor = true;
+            // 
             // AddUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 410);
+            this.Controls.Add(this.btbUpdateDepartment);
             this.Controls.Add(this.tbDisplayName);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnSave);
@@ -261,5 +261,6 @@ namespace MyFirstSoftPhone_02.Admin
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.TextBox tbDisplayName;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btbUpdateDepartment;
     }
 }

@@ -1,10 +1,13 @@
 ﻿using MyFirstSoftPhone_02.Pattern;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,9 +23,37 @@ namespace MyFirstSoftPhone_02.Admin
         string _department = "";
         string _email = "";
         string _role = "";
+        public List<Department> _departments = new List<Department>();
+        async System.Threading.Tasks.Task RunAsyncGetDepartment()
+        {
+
+            using (var client = new HttpClient())
+            {
+                // Gắn header
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("token", Global.token);
+
+                // Gọi API
+                var response = client.GetAsync($"http://192.168.1.211/api/admin/department").Result;
+
+
+                // Đọc dữ liệu trả về
+                string resultContent = response.Content.ReadAsStringAsync().Result;
+                resultContent = "{\"departments\": " + resultContent + "}";
+                var data = JsonConvert.DeserializeObject<ListDepartment>(resultContent);
+                _departments = data.departments;
+            }
+        }
+
         public AddUser()
         {
             InitializeComponent();
+            RunAsyncGetDepartment().Wait();
+            foreach(var i in _departments)
+            {
+                this.cbxDepartment.Items.Add(i.Name);
+            }
             Process();
         }
 
@@ -36,7 +67,7 @@ namespace MyFirstSoftPhone_02.Admin
         void Process()
         {
             cbxRole.Text = "Người dùng";
-            cbxDepartment.Text = "Kế toán";
+            cbxDepartment.Text = "---chọn bộ phận---";
             tbUsername.Focus();
 
         }
@@ -50,6 +81,7 @@ namespace MyFirstSoftPhone_02.Admin
             tbEmail.Text = _me.email;
             cbxRole.Enabled = false;
             tbUsername.Enabled = false;
+            cbxDepartment.Enabled = false;
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -86,6 +118,12 @@ namespace MyFirstSoftPhone_02.Admin
             {
                 MessageBox.Show("Email không được để trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tbEmail.Focus();
+                return 0;
+            }
+            else if (cbxDepartment.Text == "---chọn bộ phận---")
+            {
+                MessageBox.Show("Bạn chưa chọn bộ phận!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cbxDepartment.Focus();
                 return 0;
             }
             return 1;
