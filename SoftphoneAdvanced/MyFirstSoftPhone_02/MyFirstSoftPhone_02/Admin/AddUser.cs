@@ -23,6 +23,7 @@ namespace MyFirstSoftPhone_02.Admin
         string _department = "";
         string _email = "";
         string _role = "";
+        string flag = "them";
         public List<Department> _departments = new List<Department>();
         async System.Threading.Tasks.Task RunAsyncGetDepartment()
         {
@@ -57,11 +58,15 @@ namespace MyFirstSoftPhone_02.Admin
             Process();
         }
 
-        public AddUser(User u)
+        
+
+        public AddUser(User u, string update)
         {
             _me = u;
+            flag = update;
             InitializeComponent();
             Process_user();
+
         }
 
         void Process()
@@ -79,9 +84,15 @@ namespace MyFirstSoftPhone_02.Admin
             tbUsername.Text = _me.username;
             tbDisplayName.Text = _me.Display_Name;
             tbEmail.Text = _me.email;
-            cbxRole.Enabled = false;
             tbUsername.Enabled = false;
-            cbxDepartment.Enabled = false;
+            tbPassword.Text = "@@@@@@@@@@@@";
+            tbPassword.Enabled = false;
+            if (flag == "thongtin") cbxDepartment.Enabled = false;
+            if (flag == "thongtin") cbxRole.Enabled = false;
+            if (flag == "thongtin") tbEmail.Enabled = false;
+            if (flag == "thongtin") tbDisplayName.Enabled = false;
+            if (flag == "thongtin") btnSave.Visible = false;
+
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -128,22 +139,116 @@ namespace MyFirstSoftPhone_02.Admin
             }
             return 1;
         }
+
+
+        async System.Threading.Tasks.Task RunAsyncPostUser()
+        {
+            var p = _departments.Find( o => o.Name == _department);
+            string departmentID = p.Department_ID;
+            var parameters = new Dictionary<string, string>();
+            parameters["username"] = _username;
+            parameters["password"] = _password;
+            parameters["Display_Name"] = _displayName;
+            parameters["Department_ID"] = departmentID;
+            parameters["email"] = _email;
+            parameters["Role_ID"] = _role;
+
+   
+            using (var client = new HttpClient())
+            {
+                // Gắn header
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("token", Global.token);
+
+                // Gọi API
+                var response = client.PostAsync($"http://192.168.1.211/api/admin/account", new FormUrlEncodedContent(parameters)).Result;
+
+                // Đọc dữ liệu trả về
+                string resultContent = response.Content.ReadAsStringAsync().Result;
+                if (resultContent.Contains("successfully"))
+                {
+                    string info =
+                    "======Thông Tin người dùng=====\n\n" +
+                     $"Username: {_username}\n\n" +
+                     $"Password: {_password}\n\n" +
+                     $"Tên hiển thị: {_displayName}\n\n" +
+                     $"Bộ phận: {_department}\n\n" +
+                     $"Quyền: {_role}\n\n" +
+                     $"Email: {_email}\n";
+                    MessageBox.Show(info, "Thêm thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Username {_username} đã tồn tại trước đó!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
+
+        async System.Threading.Tasks.Task RunAsyncPutUserByAdmin()
+        {
+            var p = _departments.Find(o => o.Name == _department);
+            string departmentID = p.Department_ID;
+            var parameters = new Dictionary<string, string>();
+            parameters["username"] = _username;
+            parameters["Display_Name"] = _displayName;
+            parameters["Department_ID"] = departmentID;
+            parameters["email"] = _email;
+            parameters["Role_ID"] = _role;
+            parameters["method"] = "update";
+
+
+            using (var client = new HttpClient())
+            {
+                // Gắn header
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("token", Global.token);
+
+                // Gọi API
+                var response = client.PostAsync($"http://192.168.1.211/api/admin/account", new FormUrlEncodedContent(parameters)).Result;
+
+                // Đọc dữ liệu trả về
+                string resultContent = response.Content.ReadAsStringAsync().Result;
+                if (resultContent.Contains("successfully"))
+                {
+                    string info =
+                    "======Thông Tin người dùng sau khi cập nhật=====\n\n" +
+                     $"Username: {_username}\n\n" +
+                     $"Tên hiển thị: {_displayName}\n\n" +
+                     $"Bộ phận: {_department}\n\n" +
+                     $"Quyền: {_role}\n\n" +
+                     $"Email: {_email}\n";
+                    MessageBox.Show(info, "Cập nhật thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Username {_username} không tồn tại trước đó!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (CheckInfo() == 1)
+            if (flag == "them")
             {
-                string info =
-                "======Thông Tin người dùng=====\n\n" +
-                 $"Username: {_username}\n\n" +
-                 $"Password: {_password}\n\n" +
-                 $"Tên hiển thị: {_displayName}\n\n" +
-                 $"Bộ phận: {_department}\n\n" +
-                 $"Quyền: {_role}\n\n" +
-                 $"Email: {_email}\n";
-
-                MessageBox.Show(info);
-                this.Dispose();
+                if (CheckInfo() == 1)
+                {
+                    RunAsyncPostUser().Wait();
+                    this.Dispose();
+                }
             }
+            else
+            if (flag == "update")
+                if (CheckInfo() == 1)
+                {
+                    RunAsyncPutUserByAdmin().Wait();
+                    this.Dispose();
+                }
+            
         }
 
         private void btbUpdateDepartment_Click(object sender, EventArgs e)

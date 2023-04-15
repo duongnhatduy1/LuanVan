@@ -105,17 +105,47 @@ namespace MyFirstSoftPhone_02.Admin
             }
         }
 
+        async System.Threading.Tasks.Task RunAsyncPostManageServer(string url, string status)
+        {
+            var parameters = new Dictionary<string, string>();
+            parameters["token"] = Global.token;
+
+
+            using (var client = new HttpClient())
+            {
+                // Gắn header
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                // Gọi API
+                var response = client.PostAsync(url, new FormUrlEncodedContent(parameters)).Result;
+
+                // Đọc dữ liệu trả về
+                string resultContent = response.Content.ReadAsStringAsync().Result;
+                if (resultContent.Contains("successfully"))
+                {
+                    MessageBox.Show($"Server đã được {status} thành công", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi do đường truyền mạng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
         private void btnStartServer_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Server đã được bật!");
+            string url = "http://192.168.1.211/api/admin/startserver";
+            RunAsyncPostManageServer(url, "bật").Wait();
         }
 
         private void btnStopServer_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show($"Bạn có chắc xóa muốn tắt Server không?", "Tắt Server", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show($"Khi bạn tắt người dùng sẽ không thể sử dụng hệ thống!\n\n" +
+                $"Bạn có chắc xóa muốn tắt Server không?", "Tắt Server", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
-                MessageBox.Show("Server đã tắt!");
+                string url = "http://192.168.1.211/api/admin/stopserver";
+                RunAsyncPostManageServer(url, "tắt").Wait();
             }
         }
     }

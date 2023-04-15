@@ -240,7 +240,7 @@ namespace MyFirstSoftPhone_02.Admin
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddUser";
-            this.Text = "Add User";
+            this.Text = "Thêm người dùng";
             this.ResumeLayout(false);
             this.PerformLayout();
 

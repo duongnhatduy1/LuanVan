@@ -515,7 +515,8 @@ namespace MyFirstSoftPhone_02
             if (addUser == null)
             {
                 {
-                    addUser = new AddUser(_me);
+                    addUser = new AddUser(_me, "thongtin");
+                    addUser.Text = "Thông tin người dùng";
                     addUser.ShowDialog();
                 }
             }

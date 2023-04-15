@@ -109,8 +109,6 @@ namespace MyFirstSoftPhone_02.Admin
                 panel_FormUsers.Controls.Add(nguoidung);
                 _userButtonUpdates.Add(nguoidung);
                 nguoidung.Click += new System.EventHandler(Update_Click);
-
-                
             }
         }
         public void LoadUsers()
@@ -156,41 +154,59 @@ namespace MyFirstSoftPhone_02.Admin
                     return b.Text;
             return "";
         }
+
+        async System.Threading.Tasks.Task RunAsyncDeleteUser(string u)
+        {
+            var parameters = new Dictionary<string, string>();
+            parameters["username"] = u;
+            parameters["method"] = "delete";
+            using (var client = new HttpClient())
+            {
+                // Gắn header
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Add("token", Global.token);
+
+                // Gọi API
+                var response = client.PostAsync($"http://192.168.1.211/api/admin/account", new FormUrlEncodedContent(parameters)).Result;
+
+                // Đọc dữ liệu trả về
+                string resultContent = response.Content.ReadAsStringAsync().Result;
+                if (resultContent.Contains("successfully"))
+                {
+                    InitUsers();
+                    MessageBox.Show("Đã xóa người dùng có username: {u}", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Xóa không thành công, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+        }
+
         private void Delete_Click(object sender, EventArgs e)
         {
             string tempUsername = (sender as Button).Name;
             DialogResult dialogResult = MessageBox.Show($"Bạn có chắc xóa username {tempUsername} không?", "Xóa người dùng", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                //_userButtonDeletes.Remove((sender as Button));
-
-                //foreach (var b in _userButtonInfos.ToArray())
-                //    if (b.Name == "info" + IdClick)
-                //        _userButtonInfos.Remove(b);
-
-                //foreach (var b in _userButtonUpdates.ToArray())
-                //    if (b.Name == "update" + IdClick)
-                //        _userButtonUpdates.Remove(b);
-
-                //foreach (var b in _userLabelUsernames.ToArray())
-                //    if (b.Name == "lblUsername" + IdClick)
-                //        _userLabelUsernames.Remove(b);
-                //panel_FormUsers.Controls.Clear();
-                //LoadUsers();
-                MessageBox.Show($"Bạn đã xóa username {tempUsername}");
+                RunAsyncDeleteUser(tempUsername).Wait();
+                //MessageBox.Show($"Bạn đã xóa username {tempUsername}");
             }
         }
 
         private void Update_Click(object sender, EventArgs e)
         {
-            UpdateUser updateUser = null;
+            AddUser updateUser = null;
             string username = (sender as Button).Name.Substring(6, (sender as Button).Name.Length - 6);
             var u = _UserOnlines.SingleOrDefault(p => p.username == username);
             if (updateUser == null)
             {
                 if (u != null)
                 {
-                    updateUser = new UpdateUser(u);
+                    updateUser = new AddUser(u, "update");
+                    updateUser.Text = "Cập nhật thông tin";
                     updateUser.ShowDialog();
                 } 
                 
