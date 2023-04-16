@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9290D587-D95D-4052-A9CA-2E02697754DD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyFirstSoftPhone_02</RootNamespace>
+    <AssemblyName>MyFirstSoftPhone_02</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="OzekiSDK">
+      <HintPath>..\..\..\SDK\OzekiSDK.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\FormAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormAddUser.Designer.cs">
+      <DependentUpon>FormAddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormChangePassword.Designer.cs">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormMainAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormMainAdmin.Designer.cs">
+      <DependentUpon>FormMainAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormManageCalls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormManageCalls.Designer.cs">
+      <DependentUpon>FormManageCalls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormManageServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormManageServer.Designer.cs">
+      <DependentUpon>FormManageServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormManageUsers.Designer.cs">
+      <DependentUpon>FormManageUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormUpdateDepartment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormUpdateDepartment.Designer.cs">
+      <DependentUpon>FormUpdateDepartment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\FormUpdateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\FormUpdateUser.Designer.cs">
+      <DependentUpon>FormUpdateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Direct_Calling\FormDirectCalling.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Direct_Calling\FormDirectCalling.Designer.cs">
+      <DependentUpon>FormDirectCalling.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMainUser\FormMainUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMainUser\FormMainUser.Designer.cs">
+      <DependentUpon>FormMainUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Handle_Message\FormMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Handle_Message\FormMessage.Designer.cs">
+      <DependentUpon>FormMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryCalls\FormCallsHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryCalls\FormCallsHistory.Designer.cs">
+      <DependentUpon>FormCallsHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pattern\CallInfoList.cs" />
+    <Compile Include="Pattern\Call_Detail.cs" />
+    <Compile Include="Pattern\Department.cs" />
+    <Compile Include="Pattern\Global.cs" />
+    <Compile Include="Pattern\InfoCall.cs" />
+    <Compile Include="Pattern\ListDepartment.cs" />
+    <Compile Include="Pattern\ListMessage.cs" />
+    <Compile Include="Pattern\ListUserStatus.cs" />
+    <Compile Include="Pattern\Login.cs" />
+    <Compile Include="Pattern\Message.cs" />
+    <Compile Include="Pattern\User.cs" />
+    <Compile Include="Pattern\UserInfo.cs" />
+    <Compile Include="Pattern\UserList.cs" />
+    <Compile Include="Pattern\UserRespone.cs" />
+    <Compile Include="Pattern\UserStatus.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Admin\FormAddUser.resx">
+      <DependentUpon>FormAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormChangePassword.resx">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormMainAdmin.resx">
+      <DependentUpon>FormMainAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormManageCalls.resx">
+      <DependentUpon>FormManageCalls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormManageServer.resx">
+      <DependentUpon>FormManageServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormManageUsers.resx">
+      <DependentUpon>FormManageUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormUpdateDepartment.resx">
+      <DependentUpon>FormUpdateDepartment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\FormUpdateUser.resx">
+      <DependentUpon>FormUpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Direct_Calling\FormDirectCalling.resx">
+      <DependentUpon>FormDirectCalling.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMainUser\FormMainUser.resx">
+      <DependentUpon>FormMainUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Handle_Message\FormMessage.resx">
+      <DependentUpon>FormMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryCalls\FormCallsHistory.resx">
+      <DependentUpon>FormCallsHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\pickup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\hangup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\Login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\Person.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\reset.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\Person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\reset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\delete.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\update.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\info.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\addUser.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\listen.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\chat.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\call.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\nolisten.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\logout.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\logout2.PNG" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
