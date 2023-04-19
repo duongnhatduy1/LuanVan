@@ -48,8 +48,9 @@ namespace MyFirstSoftPhone_02.Admin
             }
         }
 
-        public FormAddUser()
+        public FormAddUser(FormMainAdmin f)
         {
+            formMainAdmin = f;
             InitializeComponent();
             RunAsyncGetDepartment().Wait();
             foreach(var i in _departments)
@@ -187,6 +188,7 @@ namespace MyFirstSoftPhone_02.Admin
                      $"Bộ phận: {_department}\n\n" +
                      $"Quyền: {_role}\n\n" +
                      $"Email: {_email}\n";
+                    formMainAdmin.RefreshManageUser();
                     MessageBox.Show(info, "Thêm thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
                 }

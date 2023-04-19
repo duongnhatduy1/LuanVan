@@ -42,7 +42,7 @@ namespace MyFirstSoftPhone_02.Admin
 //";
 
 
-        async System.Threading.Tasks.Task RunAsync()
+        public async System.Threading.Tasks.Task RunAsyncGetUser()
         {
             
             using (var client = new HttpClient())
@@ -66,7 +66,7 @@ namespace MyFirstSoftPhone_02.Admin
         public FormManageServer()
         {
             InitializeComponent();
-            RunAsync().Wait();
+            RunAsyncGetUser().Wait();
             Init();
         }
 

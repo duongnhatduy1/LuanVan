@@ -73,6 +73,7 @@ namespace MyFirstSoftPhone_02.HistoryCalls
             this.MinimizeBox = false;
             this.Name = "FormCallsHistory";
             this.Text = "Lịch sử cuộc gọi";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormCallsHistory_FormClosed);
             this.ResumeLayout(false);
 
         }

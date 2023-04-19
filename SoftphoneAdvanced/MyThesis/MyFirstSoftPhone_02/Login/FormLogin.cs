@@ -38,7 +38,7 @@ namespace MyFirstSoftPhone_02
         //}
 
 
-        async System.Threading.Tasks.Task RunAsync()
+        async System.Threading.Tasks.Task RunAsyncPostLogin()
         {
             userName = tb_Username.Text.Trim();
             password = tb_Password.Text.Trim();
@@ -77,10 +77,10 @@ namespace MyFirstSoftPhone_02
 
         private void  btn_Login_Click(object sender, EventArgs e)
         {
-            
 
-            
-            RunAsync().Wait();
+
+
+            RunAsyncPostLogin().Wait();
 
             if (!Global.success)
             {

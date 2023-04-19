@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace MyFirstSoftPhone_02.Pattern
 {
-    class UserList
+    class Status
     {
-        public Status Users { get; set; }
-        public List<User> AllUsers { get; set; }
+        public List<User> online { get; set; }
+        public List<User> offline { get; set; }
 
-        
     }
 }

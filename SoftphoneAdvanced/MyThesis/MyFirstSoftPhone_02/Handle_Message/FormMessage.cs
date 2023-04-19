@@ -17,7 +17,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
 {
     public partial class FormMessage : Form
     {
-        private FormMainUser form_CallManagement;
+        private FormMainUser formMainUser;
         private static InstantMessage _messageToSend;
         private static string receiver = "";
         private List<Pattern.Message> _listMessage = new List<Pattern.Message>();
@@ -47,7 +47,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
         public FormMessage(FormMainUser f, string r)
         {
             receiver = r;
-            form_CallManagement = f;
+            formMainUser = f;
             InitializeComponent();
             this.KeyPreview = true;
             RunAsyncGetMessages().Wait();
@@ -72,15 +72,15 @@ namespace MyFirstSoftPhone_02.Handle_Message
 
         
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSendMessage_Click(object sender, EventArgs e)
         {
             string content = tbMessage.Text.Trim();
             if (content != "")
             {
-                var messageToSend = new InstantMessage(form_CallManagement.Receiver, content);
-                form_CallManagement.SendMessage(messageToSend);
+                var messageToSend = new InstantMessage(formMainUser.Receiver, content);
+                formMainUser.SendMessage(messageToSend);
                 //lblMessage.Text += Login.userInfo.UserName+": "+ content + "\n";
-                lblMessage.Items.Add(form_CallManagement._me.username + ": " + content);
+                lblMessage.Items.Add(formMainUser._me.username + ": " + content);
             }
             tbMessage.Text = "";
             tbMessage.Focus();
@@ -88,7 +88,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
 
         private void FormMessage_FormClosed(object sender, FormClosedEventArgs e)
         {
-            form_CallManagement.formMessage = null;
+            formMainUser.formMessage = null;
         }
 
         private void tbMessage_KeyDown(object sender, KeyEventArgs e)
@@ -96,7 +96,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
             if (e.KeyCode == Keys.Enter)
             {
 
-                button1_Click(sender, e);
+                btnSendMessage_Click(sender, e);
                 tbMessage.Text = "";
             }
             

@@ -39,9 +39,9 @@ namespace MyFirstSoftPhone_02.Admin
 
                 // Đọc dữ liệu trả về
                 string resultContent = response.Content.ReadAsStringAsync().Result;
-                resultContent = "{\"Users\": " + resultContent + "}";
+                resultContent = "{\"AllUsers\": " + resultContent + "}";
                 var data = JsonConvert.DeserializeObject<UserList>(resultContent);
-                _UserOnlines = data.Users;
+                _UserOnlines = data.AllUsers;
             }
         }
 

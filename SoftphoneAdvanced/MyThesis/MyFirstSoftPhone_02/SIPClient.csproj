@@ -155,6 +155,7 @@
     <Compile Include="Pattern\ListUserStatus.cs" />
     <Compile Include="Pattern\Login.cs" />
     <Compile Include="Pattern\Message.cs" />
+    <Compile Include="Pattern\Status.cs" />
     <Compile Include="Pattern\User.cs" />
     <Compile Include="Pattern\UserInfo.cs" />
     <Compile Include="Pattern\UserList.cs" />

@@ -53,7 +53,7 @@
             this.btnHistoryCall = new System.Windows.Forms.Button();
             this.btnChat = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnInfoUser = new System.Windows.Forms.Button();
             this.btn_PickUp = new System.Windows.Forms.Button();
             this.btn_HangUp = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -326,15 +326,15 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // button1
+            // btnInfoUser
             // 
-            this.button1.Image = global::MyFirstSoftPhone_02.Properties.Resources.Person1;
-            this.button1.Location = new System.Drawing.Point(13, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 50);
-            this.button1.TabIndex = 20;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnInfoUser.Image = global::MyFirstSoftPhone_02.Properties.Resources.Person1;
+            this.btnInfoUser.Location = new System.Drawing.Point(13, 8);
+            this.btnInfoUser.Name = "btnInfoUser";
+            this.btnInfoUser.Size = new System.Drawing.Size(48, 50);
+            this.btnInfoUser.TabIndex = 20;
+            this.btnInfoUser.UseVisualStyleBackColor = true;
+            this.btnInfoUser.Click += new System.EventHandler(this.btnInfoUser_Click);
             // 
             // btn_PickUp
             // 
@@ -372,7 +372,7 @@
             this.Controls.Add(this.btnChat);
             this.Controls.Add(this.tbInputToChat);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnInfoUser);
             this.Controls.Add(this.lbl_UserLogin);
             this.Controls.Add(this.btn_DeleteAll);
             this.Controls.Add(this.btn_Delete);
@@ -425,7 +425,7 @@
         private System.Windows.Forms.Button btn_DeleteAll;
         private System.Windows.Forms.TextBox lbl_NumberToDial;
         private System.Windows.Forms.Label lbl_UserLogin;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnInfoUser;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbInputToChat;
         private System.Windows.Forms.Button btnChat;

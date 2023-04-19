@@ -76,6 +76,8 @@ namespace MyFirstSoftPhone_02.Admin
             {
                 formManageServer = new FormManageServer();
             }
+            formManageServer.RunAsyncGetUser().Wait();
+            formManageServer.Init();
             OpenChildForm(formManageServer);
             lblTitle.Text = "Quản lý Server";
             panelTitle.Controls.Remove(btnAddUser);
@@ -88,7 +90,7 @@ namespace MyFirstSoftPhone_02.Admin
             if (adduser == null)
             {
                 {
-                    adduser = new FormAddUser();
+                    adduser = new FormAddUser(this);
                     adduser.ShowDialog();
                 }
             }

@@ -24,6 +24,7 @@ namespace MyFirstSoftPhone_02
         List<User> _UserOnlines = new List<User>();
         FormMainAdmin formMainAdmin = new FormMainAdmin();
         public User _me;
+        public User Callee = new User();
         private UserInfo userInfo;
         private ISoftPhone softPhone;
         private IPhoneLine phoneLine;
@@ -190,8 +191,10 @@ namespace MyFirstSoftPhone_02
             call = e.Item;
             WireUpCallEvents();
             inComingCall = true;
+            Callee = _UserOnlines.Find(c => c.username == e.Item.CallID.ToString());
             direct_Calling = new FormDirectCalling(this);
-            direct_Calling.lbl_CallerName.Text = e.Item.OtherParty.DisplayName;
+            direct_Calling.lbl_CallerName.Text = Callee.Display_Name;
+            direct_Calling.lbl_CallerDepartment.Text = Callee.Department_Name;
             direct_Calling.ShowDialog();
         }
 
@@ -397,19 +400,19 @@ namespace MyFirstSoftPhone_02
                 client.DefaultRequestHeaders.Add("token", Global.token);
 
                 // Gọi API
-                var response = client.GetAsync($"http://{Global.ServerInfo}/api/account").Result;
+                var response = client.GetAsync($"http://{Global.ServerInfo}/api/activity").Result;
 
 
                 // Đọc dữ liệu trả về
                 string resultContent = response.Content.ReadAsStringAsync().Result;
                 resultContent = "{\"Users\": " + resultContent + "}";
                 var data = JsonConvert.DeserializeObject<UserList>(resultContent);
-                _UserOnlines = data.Users;
+                _UserOnlines = data.Users?.online;
             }
         }
         public void InitUseronline()
         {
-            //RunAsyncGetUserOnlines().Wait();
+            RunAsyncGetUserOnlines().Wait();
             int i = 0;
             foreach (var u in _UserOnlines)
             {
@@ -500,7 +503,7 @@ namespace MyFirstSoftPhone_02
             MessageBox.Show(info, "Thông tin người dùng", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnInfoUser_Click(object sender, EventArgs e)
         {
             FormAddUser addUser = null;
             if (addUser == null)

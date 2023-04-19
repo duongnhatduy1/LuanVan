@@ -47,7 +47,7 @@ namespace MyFirstSoftPhone_02.Handle_Message
             this.btnSendMessage.TabIndex = 0;
             this.btnSendMessage.Text = "Send";
             this.btnSendMessage.UseVisualStyleBackColor = true;
-            this.btnSendMessage.Click += new System.EventHandler(this.button1_Click);
+            this.btnSendMessage.Click += new System.EventHandler(this.btnSendMessage_Click);
             // 
             // tbMessage
             // 

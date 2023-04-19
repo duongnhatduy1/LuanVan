@@ -200,9 +200,9 @@ namespace MyFirstSoftPhone_02.HistoryCalls
             }
         }
 
-        private void LoadData()
+        public void LoadData()
         {
-            int i = 0; //for (int j = 1; j<=10; j++)
+            int i = 0;
             foreach (var u in _history)
             {
                 i++;
@@ -250,11 +250,14 @@ namespace MyFirstSoftPhone_02.HistoryCalls
             }
         }
 
+        
+
         async System.Threading.Tasks.Task RunAsyncDeleteSession(string u)
         {
             var parameters = new Dictionary<string, string>();
             parameters["Call_ID"] = u;
             parameters["method"] = "delete";
+            parameters["token"] = Global.token;
             using (var client = new HttpClient())
             {
                 // Gắn header
@@ -269,7 +272,13 @@ namespace MyFirstSoftPhone_02.HistoryCalls
                 string resultContent = response.Content.ReadAsStringAsync().Result;
                 if (resultContent.Contains("successfully"))
                 {
+                    panelHistory.Controls.Clear();
+                    RunAsyncGetSessionByUser().Wait();
+                    if (_Sound != null) _Sound.Stop();
+                    LoadData();
                     
+                    
+
                     MessageBox.Show($"Đã xóa Call_ID: {u}", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -286,10 +295,14 @@ namespace MyFirstSoftPhone_02.HistoryCalls
             if (dialogResult == DialogResult.Yes)
             {
                 RunAsyncDeleteSession(tempCallID).Wait();
-                InitializeComponent();
-                RunAsyncGetSessionByUser().Wait();
-                LoadData();
+                string fileName = "../../sound/" + tempCallID + ".wav";
+
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
             }
+            
         }
 
         private void Listen_Click(object sender, EventArgs e)
@@ -332,6 +345,12 @@ namespace MyFirstSoftPhone_02.HistoryCalls
         }
 
         private void btnExit_Click(object sender, EventArgs e)
+        {
+            if (_Sound != null) _Sound.Stop();
+            this.Dispose();
+        }
+
+        private void FormCallsHistory_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (_Sound != null) _Sound.Stop();
             this.Dispose();
