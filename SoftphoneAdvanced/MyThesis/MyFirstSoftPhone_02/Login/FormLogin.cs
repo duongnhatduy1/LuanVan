@@ -23,20 +23,78 @@ namespace MyFirstSoftPhone_02
         public static UserInfo userInfo;
         public User _me;
         string userName, password, serverIP;
+
+        public void RemoveTextUsername(object sender, EventArgs e)
+        {
+            if (tb_Username.Text == "Nhập Username...")
+            {
+                tb_Username.Text = "";
+            }
+        }
+
+        public void AddTextUsername(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tb_Username.Text))
+                tb_Username.Text = "Nhập Username...";
+        }
+
+        public void RemoveTextPassword(object sender, EventArgs e)
+        {
+            if (tb_Password.Text == "Nhập mật khẩu...")
+            {
+                tb_Password.Text = "";
+            }
+            tb_Password.PasswordChar = '@';
+        }
+
+        public void AddTextPassword(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tb_Password.Text))
+            {
+                tb_Password.PasswordChar = '\0';
+                tb_Password.Text = "Nhập mật khẩu...";
+            }
+            else
+                tb_Password.PasswordChar = '@';
+        }
         public FormLogin()
         {
             InitializeComponent();
+            if (tb_Password.Text.Length>0) tb_Password.PasswordChar = '@';
+            tb_Username.GotFocus += RemoveTextUsername;
+            tb_Username.LostFocus += AddTextUsername;
+            tb_Password.GotFocus += RemoveTextPassword;
+            tb_Password.LostFocus += AddTextPassword;
+
             if (Control.IsKeyLocked(Keys.CapsLock))
             {
                 MessageBox.Show("The Caps Lock key is ON.");
             }
         }
-        //public bool CheckLogin(UserInfo u)
-        //{
-        //    userInfo = u;
-        //    return true;
-        //}
 
+        private void tb_Username_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_Login_Click(sender, e);
+            }
+        }
+
+        private void tb_Password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_Login_Click(sender, e);
+            }
+        }
+
+        private void tb_ServerIP_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_Login_Click(sender, e);
+            }
+        }
 
         async System.Threading.Tasks.Task RunAsyncPostLogin()
         {
@@ -77,9 +135,6 @@ namespace MyFirstSoftPhone_02
 
         private void  btn_Login_Click(object sender, EventArgs e)
         {
-
-
-
             RunAsyncPostLogin().Wait();
 
             if (!Global.success)
@@ -107,13 +162,13 @@ namespace MyFirstSoftPhone_02
             
         }
 
-        private void btn_Registry_Click(object sender, EventArgs e)
-        {
-            tb_Username.Text = "";
-            tb_ServerIP.Text = "";
-            tb_Password.Text = "";
-            tb_Username.Focus();
-        }
+        //private void btn_Registry_Click(object sender, EventArgs e)
+        //{
+        //    tb_Username.Text = "";
+        //    tb_ServerIP.Text = "";
+        //    tb_Password.Text = "";
+        //    tb_Username.Focus();
+        //}
 
 
         //private void btn_Registry_Click(object sender, EventArgs e)
